@@ -20,7 +20,7 @@ public class TheOrderSystem extends Application {
     
     @Override
     public void start(Stage stage) throws Exception {
-        Parent root = FXMLLoader.load(getClass().getResource("FXMLDocument.fxml"));
+        Parent root = FXMLLoader.load(getClass().getResource("ui/FXMLMain.fxml"));
         
         Scene scene = new Scene(root);
         
