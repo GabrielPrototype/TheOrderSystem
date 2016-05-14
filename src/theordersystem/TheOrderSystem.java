@@ -27,9 +27,6 @@ public class TheOrderSystem extends Application {
         stage.setScene(scene);
         stage.show();
     }
-    private void teste{
-        
-    }
     /**
      * @param args the command line arguments
      */
