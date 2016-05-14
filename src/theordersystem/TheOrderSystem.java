@@ -14,6 +14,7 @@ import javafx.stage.Stage;
 /**
  *
  * @author Gabriel Longo
+ * @author Aleksander Silva
  */
 public class TheOrderSystem extends Application {
     
