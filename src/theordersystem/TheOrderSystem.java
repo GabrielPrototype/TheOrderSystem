@@ -9,7 +9,7 @@ import javafx.stage.Stage;
 
 /**
  *
- * @author Gabriel Longo
+ * @author Gabriel Longo P. Abreu
  * @author Aleksander Silva
  */
 public class TheOrderSystem extends Application {
