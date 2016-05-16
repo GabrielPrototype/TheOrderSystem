@@ -12,7 +12,8 @@ import javafx.fxml.Initializable;
 /**
  * FXML Controller class
  *
- * @author titan foda-se olha eu com bone olha eu sem bone
+ * @author Gabriel Longo P. Abreu
+ * @author Aleksander Silva
  */
 public class FXMLCustomerManagerController implements Initializable {
 
