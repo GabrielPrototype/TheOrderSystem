@@ -1,11 +1,66 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import java.lang.*?>
-<?import java.util.*?>
-<?import javafx.scene.*?>
-<?import javafx.scene.control.*?>
-<?import javafx.scene.layout.*?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.ComboBox?>
+<?import javafx.scene.control.DatePicker?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.SplitPane?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.layout.FlowPane?>
+<?import javafx.scene.layout.HBox?>
 
-<AnchorPane id="AnchorPane" prefHeight="400.0" prefWidth="600.0" xmlns:fx="http://javafx.com/fxml/1" fx:controller="theordersystem.ui.controlers.FXMLCustomerManagerController">
-    
-</AnchorPane>
+<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8.0.65" xmlns:fx="http://javafx.com/fxml/1" fx:controller="theordersystem.ui.controlers.FXMLCustomerManagerController">
+   <center>
+      <SplitPane dividerPositions="0.411371237458194" prefHeight="200.0" prefWidth="200.0" BorderPane.alignment="CENTER">
+         <items>
+            <BorderPane fx:id="pnlateral" prefHeight="200.0" prefWidth="200.0">
+               <top>
+                  <FlowPane alignment="CENTER" hgap="5.0" prefHeight="38.0" prefWidth="243.0" BorderPane.alignment="CENTER">
+                     <children>
+                        <TextField fx:id="txpesquisa" promptText="digite uma palavra chave" />
+                        <Button fx:id="btpesquisar" mnemonicParsing="false" onAction="#evtBtPesquisar" text="&gt;" />
+                     </children>
+                  </FlowPane>
+               </top>
+               <center>
+                  <TableView fx:id="tableCustomers" onMouseClicked="#evtClickTabela" prefHeight="200.0" prefWidth="200.0" BorderPane.alignment="CENTER">
+                    <columns>
+                      <TableColumn fx:id="colCod" prefWidth="92.0" text="Código" />
+                      <TableColumn fx:id="colName" prefWidth="142.0" text="Nome" />
+                    </columns>
+                  </TableView>
+               </center>
+            </BorderPane>
+            <AnchorPane fx:id="pndados" prefHeight="398.0" prefWidth="403.0">
+               <children>
+                  <Label layoutX="15.0" layoutY="14.0" text="Código:" />
+                  <TextField fx:id="tfieldCod" layoutX="15.0" layoutY="31.0" prefHeight="25.0" prefWidth="63.0" />
+                  <Label layoutX="15.0" layoutY="65.0" text="Nome:" />
+                  <TextField fx:id="tfieldName" layoutX="15.0" layoutY="82.0" prefHeight="25.0" prefWidth="274.0" promptText="Informe o nome do animal" />
+                  <Label layoutX="15.0" layoutY="120.0" text="Peso:" />
+                  <TextField fx:id="tfieldWeight" layoutX="15.0" layoutY="137.0" prefHeight="26.0" prefWidth="113.0" promptText="peso em Kg" />
+                  <DatePicker fx:id="dtdtnasc" layoutX="15.0" layoutY="194.0" prefHeight="25.0" prefWidth="113.0" />
+                  <Label layoutX="15.0" layoutY="175.0" text="Data de nascimento:" />
+                  <ComboBox fx:id="cbraca" layoutX="15.0" layoutY="250.0" prefWidth="150.0" />
+                  <Label layoutX="15.0" layoutY="230.0" text="Raça:" />
+               </children>
+            </AnchorPane>
+         </items>
+      </SplitPane>
+   </center>
+   <bottom>
+      <HBox alignment="CENTER" prefHeight="44.0" prefWidth="600.0" spacing="10.0" style="-fx-background-color: gray;" BorderPane.alignment="CENTER">
+         <children>
+            <Button fx:id="btnew" onAction="#evtBtNovo" prefHeight="32.0" prefWidth="90.0" text="_Novo" />
+            <Button fx:id="btmodify" layoutX="10.0" layoutY="10.0" mnemonicParsing="false" onAction="#evtBtAlterar" prefHeight="32.0" prefWidth="90.0" text="Alterar" />
+            <Button fx:id="btapagar" layoutX="100.0" layoutY="10.0" mnemonicParsing="false" onAction="#evtBtApagar" prefHeight="32.0" prefWidth="90.0" text="Apagar" />
+            <Button fx:id="btconfirmar" layoutX="190.0" layoutY="10.0" mnemonicParsing="false" onAction="#evtBtConfirmar" prefHeight="32.0" prefWidth="90.0" text="Confirmar" />
+            <Button fx:id="btcancelar" layoutX="280.0" layoutY="10.0" mnemonicParsing="false" onAction="#evtBtCancelar" prefHeight="32.0" prefWidth="90.0" text="Cancelar" />
+         </children>
+      </HBox>
+   </bottom>
+</BorderPane>
