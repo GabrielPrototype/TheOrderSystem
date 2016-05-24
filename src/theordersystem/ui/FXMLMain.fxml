@@ -12,7 +12,7 @@
 <?import javafx.scene.layout.FlowPane?>
 <?import javafx.scene.layout.VBox?>
 
-<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8.0.65" xmlns:fx="http://javafx.com/fxml/1" fx:controller="theordersystem.ui.controlers.FXMLMainController">
+<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8.0.72" xmlns:fx="http://javafx.com/fxml/1" fx:controller="theordersystem.ui.controlers.FXMLMainController">
    <top>
       <VBox prefHeight="9.0" prefWidth="600.0" BorderPane.alignment="CENTER">
          <children>
@@ -42,6 +42,11 @@
                       <MenuItem text="Action 1" />
                     </items>
                   </Menu>
+                  <Menu text="_Relatórios">
+                    <items>
+                      <MenuItem mnemonicParsing="false" text="Action 1" />
+                    </items>
+                  </Menu>
                 <Menu text="_Ajuda">
                   <items>
                         <MenuItem text="_Ajuda">
@@ -56,8 +61,8 @@
             </MenuBar>
             <ToolBar prefHeight="40.0" prefWidth="200.0">
               <items>
-                <Button prefHeight="26.0" prefWidth="125.0" text="Novo Pedido" />
-                  <Button layoutX="10.0" layoutY="11.0" prefHeight="26.0" prefWidth="125.0" text="Procurar Pedido" />
+                <Button fx:id="btNewOrder" prefHeight="26.0" prefWidth="125.0" text="Novo Pedido" />
+                  <Button fx:id="btSearchOrder" layoutX="10.0" layoutY="11.0" prefHeight="26.0" prefWidth="125.0" text="Procurar Pedido" />
               </items>
             </ToolBar>
          </children>

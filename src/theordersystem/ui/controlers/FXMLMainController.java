@@ -7,7 +7,9 @@ package theordersystem.ui.controlers;
 
 import java.net.URL;
 import java.util.ResourceBundle;
+import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
+import javafx.scene.control.Button;
 
 /**
  * FXML Controller class
@@ -16,6 +18,11 @@ import javafx.fxml.Initializable;
  * @author Aleksander Silva
  */
 public class FXMLMainController implements Initializable {
+
+    @FXML
+    private Button btNewOrder;
+    @FXML
+    private Button btSearchOrder;
 
     /**
      * Initializes the controller class.
