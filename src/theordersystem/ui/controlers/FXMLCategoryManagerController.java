@@ -13,6 +13,7 @@ import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
+import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
@@ -51,6 +52,8 @@ public class FXMLCategoryManagerController implements Initializable {
     private AnchorPane pnInfos;
     @FXML
     private TextField tfieldCod;
+    @FXML
+    private TextArea tareaDescription;
 
     /**
      * Initializes the controller class.
@@ -58,6 +61,7 @@ public class FXMLCategoryManagerController implements Initializable {
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         // TODO
+        
     }    
 
     @FXML

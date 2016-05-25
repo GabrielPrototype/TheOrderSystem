@@ -7,13 +7,16 @@ package theordersystem.ui.controlers;
 
 import java.net.URL;
 import java.util.ResourceBundle;
+import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
+import javafx.scene.Node;
 import javafx.scene.control.Button;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
+import javafx.scene.control.TextInputControl;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.BorderPane;
@@ -69,15 +72,52 @@ public class FXMLCustomerManagerController implements Initializable {
      */
     @Override
     public void initialize(URL url, ResourceBundle rb) {
+        LayoutOriginal();
         // TODO
     }    
+    
+    private void LayoutOriginal() 
+    {
+        pnSearch.setDisable(false);
+        pnData.setDisable(true);
 
+        btnConfirm.setDisable(true);
+        btnCancel.setDisable(false);
+        btnDelete.setDisable(true);
+        btnModify.setDisable(true);
+        btnNew.setDisable(false);
+
+        ObservableList<Node> componentes = pnData.getChildren(); //”limpa” os componentes
+        for (Node n : componentes) {
+            if (n instanceof TextInputControl) // textfield, textarea e htmleditor
+            {
+                ((TextInputControl) n).setText("");
+            }
+        }
+
+        //carregaTabela("");
+    }
+    
+    private void LayoutEditing()
+    {     // carregar os componentes da tela (listbox, combobox, ...)
+          // p.e. : carregaEstados();
+          tfieldID.setEditable(false);
+          pnSearch.setDisable(true);
+          pnData.setDisable(false);
+          btnConfirm.setDisable(false);
+          btnDelete.setDisable(true);
+          btnModify.setDisable(true);
+          tfieldName.requestFocus();  
+     }
+    
     @FXML
     private void evtBtnNew(ActionEvent event) {
+        LayoutEditing();
     }
 
     @FXML
     private void evtBtnModify(ActionEvent event) {
+        LayoutEditing();
     }
 
     @FXML
@@ -90,6 +130,7 @@ public class FXMLCustomerManagerController implements Initializable {
 
     @FXML
     private void evtBtnCancel(ActionEvent event) {
+        LayoutOriginal();
     }
 
     @FXML

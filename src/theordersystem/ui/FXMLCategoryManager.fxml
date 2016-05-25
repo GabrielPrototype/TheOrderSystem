@@ -47,7 +47,7 @@
                      </tooltip></Label>
                   <TextField fx:id="tfieldCod" layoutX="15.0" layoutY="31.0" prefHeight="25.0" prefWidth="63.0" AnchorPane.leftAnchor="10.0" />
                   <Label layoutX="15.0" layoutY="96.0" text="Descrição:" />
-                  <TextArea layoutX="14.0" layoutY="118.0" prefHeight="226.0" prefWidth="320.0" promptText="Descreva a categoria aqui" AnchorPane.bottomAnchor="10.0" AnchorPane.leftAnchor="10.0" AnchorPane.rightAnchor="10.0" AnchorPane.topAnchor="118.0" />
+                  <TextArea fx:id="tareaDescription" layoutX="14.0" layoutY="118.0" prefHeight="226.0" prefWidth="320.0" promptText="Descreva a categoria aqui" wrapText="true" AnchorPane.bottomAnchor="10.0" AnchorPane.leftAnchor="10.0" AnchorPane.rightAnchor="10.0" AnchorPane.topAnchor="118.0" />
                </children>
             </AnchorPane>
          </items>
