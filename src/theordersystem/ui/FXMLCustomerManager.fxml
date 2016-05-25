@@ -17,17 +17,17 @@
    <center>
       <SplitPane dividerPositions="0.5" prefHeight="200.0" prefWidth="200.0" BorderPane.alignment="CENTER">
          <items>
-            <BorderPane fx:id="pnlateral" minWidth="250.0" prefHeight="354.0" prefWidth="250.0">
+            <BorderPane fx:id="pnSearch" minWidth="250.0" prefHeight="354.0" prefWidth="250.0">
                <top>
                   <FlowPane alignment="CENTER" hgap="5.0" prefHeight="38.0" prefWidth="243.0" BorderPane.alignment="CENTER">
                      <children>
-                        <TextField fx:id="txpesquisa" prefHeight="26.0" prefWidth="158.0" promptText="digite uma palavra chave" />
-                        <Button fx:id="btpesquisar" mnemonicParsing="false" onAction="#evtBtPesquisar" text="Procurar" />
+                        <TextField fx:id="tfieldSearch" prefHeight="26.0" prefWidth="158.0" promptText="digite uma palavra chave" />
+                        <Button fx:id="btnSearch" mnemonicParsing="false" onAction="#btnSearch_Action" text="Procurar" />
                      </children>
                   </FlowPane>
                </top>
                <center>
-                  <TableView fx:id="tableCustomers" onMouseClicked="#evtClickTabela" prefHeight="200.0" prefWidth="200.0" BorderPane.alignment="CENTER">
+                  <TableView fx:id="tviewResult" onMouseClicked="#tviewResult_MouseClicked" prefHeight="200.0" prefWidth="200.0" BorderPane.alignment="CENTER">
                      <columns>
                         <TableColumn fx:id="colCod" prefWidth="53.0" text="ID" />
                         <TableColumn fx:id="colName" prefWidth="181.0" text="Nome" />
@@ -35,28 +35,30 @@
                   </TableView>
                </center>
             </BorderPane>
-            <AnchorPane fx:id="pndados" prefHeight="398.0" prefWidth="403.0">
+            <AnchorPane fx:id="pnData" prefHeight="398.0" prefWidth="403.0">
                <children>
                   <Label accessibleRoleDescription="ID: numero interno do cliente" layoutX="15.0" layoutY="14.0" text="ID:">
                      <tooltip>
                         <Tooltip text="Identidade interna do Cliente" />
-                     </tooltip></Label>
-                  <TextField fx:id="tfieldCod" layoutX="15.0" layoutY="30.0" prefHeight="25.0" prefWidth="63.0" />
+                     </tooltip>
+                  </Label>
+                  <TextField fx:id="tfieldID" layoutX="15.0" layoutY="30.0" prefHeight="25.0" prefWidth="63.0" />
                   <Label layoutX="85.0" layoutY="14.0" text="Nome:">
                      <opaqueInsets>
                         <Insets />
-                     </opaqueInsets></Label>
-                  <TextField fx:id="tfiieldName" layoutX="85.0" layoutY="30.0" minWidth="247.0" prefHeight="26.0" prefWidth="247.0" promptText="ex: Jaspion de Daileon" AnchorPane.leftAnchor="85.0" AnchorPane.rightAnchor="16.0" />
+                     </opaqueInsets>
+                  </Label>
+                  <TextField fx:id="tfieldName" layoutX="85.0" layoutY="30.0" minWidth="247.0" prefHeight="26.0" prefWidth="247.0" promptText="ex: Jaspion de Daileon" AnchorPane.leftAnchor="85.0" AnchorPane.rightAnchor="16.0" />
                   <Label layoutX="15.0" layoutY="69.0" text="Endereço:" />
-                  <TextField fx:id="tfiieldName1" layoutX="15.0" layoutY="86.0" minWidth="300.0" prefHeight="26.0" prefWidth="320.0" promptText="ex.: Rua, número, bairro, logradouro." AnchorPane.leftAnchor="12.0" AnchorPane.rightAnchor="16.0" />
+                  <TextField fx:id="tfieldAdress" layoutX="15.0" layoutY="86.0" minWidth="300.0" prefHeight="26.0" prefWidth="320.0" promptText="ex.: Rua, número, bairro, logradouro." AnchorPane.leftAnchor="12.0" AnchorPane.rightAnchor="16.0" />
                   <Label layoutX="14.0" layoutY="124.0" text="Cidade:" />
-                  <TextField fx:id="tfiieldName12" layoutX="14.0" layoutY="141.0" minWidth="300.0" prefHeight="26.0" prefWidth="320.0" promptText="ex.: Campinas - São Paulo" AnchorPane.leftAnchor="12.0" AnchorPane.rightAnchor="16.0" />
+                  <TextField fx:id="tfieldCity" layoutX="15.0" layoutY="141.0" minWidth="300.0" prefHeight="26.0" prefWidth="320.0" promptText="ex.: Campinas - São Paulo" AnchorPane.leftAnchor="12.0" AnchorPane.rightAnchor="16.0" />
                   <Label layoutX="15.0" layoutY="177.0" text="CEP:" />
-                  <TextField fx:id="tfiieldName121" layoutX="15.0" layoutY="194.0" minWidth="140.0" prefHeight="26.0" prefWidth="140.0" promptText="ex.: 00000-000" />
+                  <TextField fx:id="tfieldCEP" layoutX="15.0" layoutY="194.0" minWidth="140.0" prefHeight="26.0" prefWidth="140.0" promptText="ex.: 00000-000" />
                   <Label layoutX="15.0" layoutY="229.0" text="País:" />
-                  <TextField fx:id="tfiieldName122" layoutX="15.0" layoutY="246.0" minWidth="300.0" prefHeight="26.0" prefWidth="320.0" promptText="ex.: Cazaquistão" AnchorPane.leftAnchor="12.0" AnchorPane.rightAnchor="16.0" />
+                  <TextField fx:id="tfieldCountry" layoutX="15.0" layoutY="246.0" minWidth="300.0" prefHeight="26.0" prefWidth="320.0" promptText="ex.: Cazaquistão" AnchorPane.leftAnchor="12.0" AnchorPane.rightAnchor="16.0" />
                   <Label layoutX="15.0" layoutY="282.0" text="E-mail:" />
-                  <TextField fx:id="tfiieldName1221" layoutX="15.0" layoutY="299.0" minWidth="300.0" prefHeight="26.0" prefWidth="320.0" promptText="ex.: cod.émelhor@dota.treta.hue" AnchorPane.leftAnchor="12.0" AnchorPane.rightAnchor="16.0" />
+                  <TextField fx:id="tfieldEmail" layoutX="15.0" layoutY="299.0" minWidth="300.0" prefHeight="26.0" prefWidth="320.0" promptText="ex.: ma,oequemquerdinheiro@silvio.santos" AnchorPane.leftAnchor="12.0" AnchorPane.rightAnchor="16.0" />
                </children>
             </AnchorPane>
          </items>

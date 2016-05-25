@@ -11,8 +11,6 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
-import javafx.scene.control.ComboBox;
-import javafx.scene.control.DatePicker;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
@@ -28,39 +26,43 @@ import javafx.scene.layout.BorderPane;
 public class FXMLCustomerManagerController implements Initializable {
 
     @FXML
-    private Button btnew;
+    private Button btnNew;
     @FXML
-    private Button btmodify;
+    private Button btnModify;
     @FXML
-    private Button btapagar;
+    private Button btnDelete;
     @FXML
-    private Button btconfirmar;
+    private Button btnConfirm;
     @FXML
-    private Button btcancelar;
+    private Button btnCancel;
     @FXML
-    private BorderPane pnlateral;
+    private BorderPane pnSearch;
     @FXML
-    private TextField txpesquisa;
+    private TextField tfieldSearch;
     @FXML
-    private Button btpesquisar;
+    private Button btnSearch;
     @FXML
-    private TableView<?> tableCustomers;
+    private TableView<?> tviewResult;
     @FXML
-    private TableColumn<?, ?> colcod;
+    private TableColumn<?, ?> colCod;
     @FXML
-    private TableColumn<?, ?> colnome;
+    private TableColumn<?, ?> colName;
     @FXML
-    private AnchorPane pndados;
+    private AnchorPane pnData;
     @FXML
-    private TextField txcodigo;
+    private TextField tfieldID;
     @FXML
-    private TextField txnome;
+    private TextField tfieldName;
     @FXML
-    private TextField txpeso;
+    private TextField tfieldAdress;
     @FXML
-    private DatePicker dtdtnasc;
+    private TextField tfieldCity;
     @FXML
-    private ComboBox<?> cbraca;
+    private TextField tfieldCEP;
+    @FXML
+    private TextField tfieldCountry;
+    @FXML
+    private TextField tfieldEmail;
 
     /**
      * Initializes the controller class.
@@ -71,31 +73,31 @@ public class FXMLCustomerManagerController implements Initializable {
     }    
 
     @FXML
-    private void evtBtNovo(ActionEvent event) {
+    private void evtBtnNew(ActionEvent event) {
     }
 
     @FXML
-    private void evtBtAlterar(ActionEvent event) {
+    private void evtBtnModify(ActionEvent event) {
     }
 
     @FXML
-    private void evtBtApagar(ActionEvent event) {
+    private void evtBtnDelete(ActionEvent event) {
     }
 
     @FXML
-    private void evtBtConfirmar(ActionEvent event) {
+    private void evtBtnConfirm(ActionEvent event) {
     }
 
     @FXML
-    private void evtBtCancelar(ActionEvent event) {
+    private void evtBtnCancel(ActionEvent event) {
     }
 
     @FXML
-    private void evtBtPesquisar(ActionEvent event) {
+    private void btnSearch_Action(ActionEvent event) {
     }
 
     @FXML
-    private void evtClickTabela(MouseEvent event) {
+    private void tviewResult_MouseClicked(MouseEvent event) {
     }
     
 }

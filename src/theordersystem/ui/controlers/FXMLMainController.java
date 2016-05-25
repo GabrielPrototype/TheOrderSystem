@@ -7,9 +7,15 @@ package theordersystem.ui.controlers;
 
 import java.net.URL;
 import java.util.ResourceBundle;
+import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
 import javafx.scene.control.Button;
+import javafx.scene.control.MenuItem;
+import javafx.stage.Stage;
 
 /**
  * FXML Controller class
@@ -23,6 +29,10 @@ public class FXMLMainController implements Initializable {
     private Button btNewOrder;
     @FXML
     private Button btSearchOrder;
+    @FXML
+    private MenuItem miCategories;
+    @FXML
+    private MenuItem miCustomers;
 
     /**
      * Initializes the controller class.
@@ -31,5 +41,31 @@ public class FXMLMainController implements Initializable {
     public void initialize(URL url, ResourceBundle rb) {
         // TODO
     }    
+
+    @FXML
+    private void miCategories_Action(ActionEvent event) {
+        try
+        {
+           Stage stage = new Stage();
+           Parent root = FXMLLoader.load(getClass().getResource("/theordersystem/ui/FXMLCategoryManager.fxml"));
+        
+           Scene scene = new Scene(root);
+           stage.setScene(scene);
+           stage.show();
+        }catch(Exception e){System.out.println(e);}
+    }
+
+    @FXML
+    private void miCustomers_Action(ActionEvent event) {
+        try
+        {
+           Stage stage = new Stage();
+           Parent root = FXMLLoader.load(getClass().getResource("/theordersystem/ui/FXMLCustomerManager.fxml"));
+        
+           Scene scene = new Scene(root);
+           stage.setScene(scene);
+           stage.show();
+        }catch(Exception e){System.out.println(e);}
+    }
     
 }
