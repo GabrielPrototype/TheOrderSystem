@@ -7,14 +7,17 @@ package theordersystem.ui.controlers;
 
 import java.net.URL;
 import java.util.ResourceBundle;
+import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
+import javafx.scene.Node;
 import javafx.scene.control.Button;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
+import javafx.scene.control.TextInputControl;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.BorderPane;
@@ -54,36 +57,50 @@ public class FXMLCategoryManagerController implements Initializable {
     private TextField tfieldCod;
     @FXML
     private TextArea tareaDescription;
-
+    
     /**
      * Initializes the controller class.
      */
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         // TODO
-        
+        LayoutOriginal();
     }    
 
-    @FXML
-    private void evtBtnNew(ActionEvent event) {
-    }
+    private void LayoutOriginal() 
+    {
+        pnSearch.setDisable(false);
+        pnInfos.setDisable(true);
 
-    @FXML
-    private void evtBtnModify(ActionEvent event) {
-    }
+        btnConfirm.setDisable(true);
+        btnCancel.setDisable(false);
+        btnDelete.setDisable(true);
+        btnModify.setDisable(true);
+        btnNew.setDisable(false);
 
-    @FXML
-    private void evtBtnDelete(ActionEvent event) {
-    }
+        ObservableList<Node> componentes = pnInfos.getChildren(); //”limpa” os componentes
+        for (Node n : componentes) {
+            if (n instanceof TextInputControl) // textfield, textarea e htmleditor
+            {
+                ((TextInputControl) n).setText("");
+            }
+        }
 
-    @FXML
-    private void evtBtnConfirm(ActionEvent event) {
+        //carregaTabela("");
     }
-
-    @FXML
-    private void evtBtnCancel(ActionEvent event) {
-    }
-
+    
+    private void LayoutEditing()
+    {     // carregar os componentes da tela (listbox, combobox, ...)
+          // p.e. : carregaEstados();
+          tfieldCod.setEditable(false);
+          pnSearch.setDisable(true);
+          pnInfos.setDisable(false);
+          btnConfirm.setDisable(false);
+          btnDelete.setDisable(true);
+          btnModify.setDisable(true);
+          tareaDescription.requestFocus();  
+     }
+    
     @FXML
     private void tfieldSearch_Action(ActionEvent event) {
     }
@@ -94,6 +111,29 @@ public class FXMLCategoryManagerController implements Initializable {
 
     @FXML
     private void tviewResult_MouseClicked(MouseEvent event) {
+    }
+
+    @FXML
+    private void btnNew_Action(ActionEvent event) {
+        LayoutEditing();
+    }
+
+    @FXML
+    private void btnModify_Action(ActionEvent event) {
+        LayoutEditing();
+    }
+
+    @FXML
+    private void btnDelete_Action(ActionEvent event) {
+    }
+
+    @FXML
+    private void btnConfirm_Action(ActionEvent event) {
+    }
+
+    @FXML
+    private void btnCancel_Action(ActionEvent event) {
+        LayoutOriginal();
     }
     
 }

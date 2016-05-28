@@ -33,6 +33,10 @@ public class ConnectionDB
         { error="Other Error: " + ex.toString(); }
     }
     
+    /**
+     *
+     * @return error message string
+     */
     public String getErrorMessage() {
         return error;
     }

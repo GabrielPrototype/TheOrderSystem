@@ -67,11 +67,11 @@
    <bottom>
       <HBox alignment="CENTER" prefHeight="44.0" prefWidth="600.0" spacing="10.0" style="-fx-background-color: gray;" BorderPane.alignment="CENTER">
          <children>
-            <Button fx:id="btnNew" onAction="#evtBtnNew" prefHeight="32.0" prefWidth="90.0" text="_Novo" />
-            <Button fx:id="btnModify" mnemonicParsing="false" onAction="#evtBtnModify" prefHeight="32.0" prefWidth="90.0" text="Alterar" />
-            <Button fx:id="btnDelete" mnemonicParsing="false" onAction="#evtBtnDelete" prefHeight="32.0" prefWidth="90.0" text="Apagar" />
-            <Button fx:id="btnConfirm" mnemonicParsing="false" onAction="#evtBtnConfirm" prefHeight="32.0" prefWidth="90.0" text="Confirmar" />
-            <Button fx:id="btnCancel" mnemonicParsing="false" onAction="#evtBtnCancel" prefHeight="32.0" prefWidth="90.0" text="Cancelar" />
+            <Button fx:id="btnNew" onAction="#btnNew_Action" prefHeight="32.0" prefWidth="90.0" text="_Novo" />
+            <Button fx:id="btnModify" mnemonicParsing="false" onAction="#btnModify_Action" prefHeight="32.0" prefWidth="90.0" text="Alterar" />
+            <Button fx:id="btnDelete" mnemonicParsing="false" onAction="#btnDelete_Action" prefHeight="32.0" prefWidth="90.0" text="Apagar" />
+            <Button fx:id="btnConfirm" mnemonicParsing="false" onAction="#btnConfirm_Action" prefHeight="32.0" prefWidth="90.0" text="Confirmar" />
+            <Button fx:id="btnCancel" mnemonicParsing="false" onAction="#btnCancel_Action" prefHeight="32.0" prefWidth="90.0" text="Cancelar" />
          </children>
       </HBox>
    </bottom>

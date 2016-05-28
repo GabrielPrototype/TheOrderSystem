@@ -111,34 +111,34 @@ public class FXMLCustomerManagerController implements Initializable {
      }
     
     @FXML
-    private void evtBtnNew(ActionEvent event) {
-        LayoutEditing();
-    }
-
-    @FXML
-    private void evtBtnModify(ActionEvent event) {
-        LayoutEditing();
-    }
-
-    @FXML
-    private void evtBtnDelete(ActionEvent event) {
-    }
-
-    @FXML
-    private void evtBtnConfirm(ActionEvent event) {
-    }
-
-    @FXML
-    private void evtBtnCancel(ActionEvent event) {
-        LayoutOriginal();
-    }
-
-    @FXML
     private void btnSearch_Action(ActionEvent event) {
     }
 
     @FXML
     private void tviewResult_MouseClicked(MouseEvent event) {
+    }
+
+    @FXML
+    private void btnNew_Action(ActionEvent event) {
+        LayoutEditing();
+    }
+
+    @FXML
+    private void btnModify_Action(ActionEvent event) {
+        LayoutEditing();
+    }
+
+    @FXML
+    private void btnDelete_Action(ActionEvent event) {
+    }
+
+    @FXML
+    private void btnConfirm_Action(ActionEvent event) {
+    }
+
+    @FXML
+    private void btnCancel_Action(ActionEvent event) {
+        LayoutOriginal();
     }
     
 }
