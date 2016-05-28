@@ -1,7 +1,7 @@
 package theordersystem.db.controlers;
 
 import theordersystem.db.entities.Animal;
-import theordersystem.db.util.Banco;
+import theordersystem.db.util.Database;
 import java.sql.ResultSet;
 import java.util.ArrayList;
 
@@ -15,7 +15,7 @@ public class CtrAnimal
         sql=sql.replace("$3", a.getDtnasc().toString());
         sql=sql.replace("$4", ""+a.getRaca().getCod());
         
-        return Banco.getCon().manipular(sql);
+        return Database.getCon().manipulate(sql);
     }
     public boolean alterar(Animal a)
     {   String sql="update animal set ani_nome='$1',ani_peso=$2,ani_dtnasc='$3',"
@@ -26,17 +26,17 @@ public class CtrAnimal
         sql=sql.replace("$4", ""+a.getRaca().getCod());
         sql=sql.replace("$5", ""+a.getCod());
         
-        return Banco.getCon().manipular(sql);
+        return Database.getCon().manipulate(sql);
     }
     public boolean apagar(Animal a)
     {  String sql="delete from animal where ani_cod = "+a.getCod();
-       return Banco.getCon().manipular(sql);
+       return Database.getCon().manipulate(sql);
     }
     public Animal getAnimal(int cod)
     {   Animal a=null;
         CtrRaca ctrr=new CtrRaca();
         String sql="select * from animal where ani_cod = "+cod;
-        ResultSet rs =Banco.getCon().consultar(sql);
+        ResultSet rs =Database.getCon().consult(sql);
         try {
             if(rs.next())
                a=new Animal(rs.getInt("ani_cod"),
@@ -53,7 +53,7 @@ public class CtrAnimal
         String sql="select * from animal";
         if (!filtro.isEmpty())
             sql+=" where "+filtro;
-        ResultSet rs =Banco.getCon().consultar(sql);
+        ResultSet rs =Database.getCon().consult(sql);
         try {
             while(rs.next())
                animais.add(new Animal(rs.getInt("ani_cod"),

@@ -6,31 +6,43 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 
-public class Conexao
-{   private Connection connect;
-    private String erro="";
-    public Conexao(String driver,String local,String banco,String usuario,String senha)
-    {   try {
+public class ConnectionDB
+{   
+    private Connection connect;
+    private String error="";
+    
+    /**
+     *
+     * @param local
+     * @param banco
+     * @param user
+     * @param password
+     */
+    public ConnectionDB(String local,String banco,String user,String password){   
+        
+        try {
             //Class.forName(driver); //"org.postgresql.Driver");
             String url = local+banco; //"jdbc:postgresql://localhost/"+banco;
-            connect = DriverManager.getConnection( url, usuario,senha);
+            connect = DriverManager.getConnection(url, user,password);
         }
         //catch ( ClassNotFoundException cnfex )
         //{ erro="Falha ao ler o driver JDBC: " + cnfex.toString(); }
         catch ( SQLException sqlex )
-        { erro="Impossivel conectar com a base de dados: " + sqlex.toString(); }
+        { error="Unable to connect Database: " + sqlex.toString(); }
         catch ( Exception ex )
-        { erro="Outro erro: " + ex.toString(); }
+        { error="Other Error: " + ex.toString(); }
     }
-    public String getMensagemErro() {
-        return erro;
+    
+    public String getErrorMessage() {
+        return error;
     }
-    public boolean getEstadoConexao() {
-        if(connect==null)  return false;
+    
+    public boolean getConnectionStatus() {
+        if(connect == null)  return false;
         else return true;
     }
-    public boolean manipular(String sql) // inserir, alterar,excluir
-    {
+    
+    public boolean manipulate(String sql){ // inserir, alterar,excluir
         try {
             Statement statement = connect.createStatement();
             int result = statement.executeUpdate( sql );
@@ -39,13 +51,14 @@ public class Conexao
                 return true;
         }
         catch ( SQLException sqlex )
-        {  erro="Erro: "+sqlex.toString();
+        {  error="Erro: "+sqlex.toString();
            return false;
         }
         return false;
     }
-    public ResultSet consultar(String sql)
-    {   ResultSet rs=null;
+    
+    public ResultSet consult(String sql){   
+        ResultSet rs=null;
         try {
            Statement statement = connect.createStatement();
              //ResultSet.TYPE_SCROLL_INSENSITIVE,
@@ -54,16 +67,17 @@ public class Conexao
            //statement.close();
         }
         catch ( SQLException sqlex )
-        { erro="Erro: "+sqlex.toString();
+        { error="Erro: "+sqlex.toString();
           return null;
         }
         return rs;
     }
-    public int getMaxPK(String tabela,String chave) 
-    {
+    
+    public int getMaxPK(String tabela,String chave){
+        
         String sql="select max("+chave+") from "+tabela;
         int max=0;
-        ResultSet rs= consultar(sql);
+        ResultSet rs= consult(sql);
         try 
         {
             if(rs.next())
@@ -71,7 +85,7 @@ public class Conexao
         }
         catch (SQLException sqlex)
         { 
-             erro="Erro: " + sqlex.toString();
+             error="Erro: " + sqlex.toString();
              return -1;
         }
         return max;
