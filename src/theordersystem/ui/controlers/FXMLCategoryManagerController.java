@@ -29,34 +29,25 @@ import javafx.scene.layout.BorderPane;
  */
 public class FXMLCategoryManagerController implements Initializable {
 
-    @FXML
     private Button btnNew;
-    @FXML
     private Button btnModify;
-    @FXML
     private Button btnDelete;
     @FXML
     private Button btnConfirm;
     @FXML
     private Button btnCancel;
-    @FXML
     private BorderPane pnSearch;
-    @FXML
-    private TextField tfieldSearch;
-    @FXML
-    private Button btnSearch;
-    @FXML
-    private TableView<?> tviewResult;
-    @FXML
-    private TableColumn<?, ?> colCod;
-    @FXML
-    private TableColumn<?, ?> colName;
-    @FXML
     private AnchorPane pnInfos;
-    @FXML
     private TextField tfieldCod;
-    @FXML
     private TextArea tareaDescription;
+    @FXML
+    private TextField tfieldURL;
+    @FXML
+    private TextField tfieldDataBase;
+    @FXML
+    private TextField tfieldUser;
+    @FXML
+    private TextField tfieldPassword;
     
     /**
      * Initializes the controller class.
@@ -101,31 +92,14 @@ public class FXMLCategoryManagerController implements Initializable {
           tareaDescription.requestFocus();  
      }
     
-    @FXML
-    private void tfieldSearch_Action(ActionEvent event) {
-    }
-
-    @FXML
-    private void btnSearch_Action(ActionEvent event) {
-    }
-
-    @FXML
-    private void tviewResult_MouseClicked(MouseEvent event) {
-    }
-
-    @FXML
     private void btnNew_Action(ActionEvent event) {
         LayoutEditing();
     }
 
-    @FXML
     private void btnModify_Action(ActionEvent event) {
         LayoutEditing();
     }
 
-    @FXML
-    private void btnDelete_Action(ActionEvent event) {
-    }
 
     @FXML
     private void btnConfirm_Action(ActionEvent event) {

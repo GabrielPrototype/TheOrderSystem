@@ -9,7 +9,7 @@ import java.sql.Statement;
 public class ConnectionDB
 {   
     private Connection connect;
-    private String error="";
+    private String error = "";
     
     /**
      *
@@ -28,9 +28,9 @@ public class ConnectionDB
         //catch ( ClassNotFoundException cnfex )
         //{ erro="Falha ao ler o driver JDBC: " + cnfex.toString(); }
         catch ( SQLException sqlex )
-        { error="Unable to connect Database: " + sqlex.toString(); }
+        { error = "Unable to connect Database: " + sqlex.toString(); }
         catch ( Exception ex )
-        { error="Other Error: " + ex.toString(); }
+        { error = "Other Error: " + ex.toString(); }
     }
     
     /**
