@@ -41,6 +41,12 @@ public class FXMLMainController implements Initializable {
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         // TODO
+        if (!Database.openConnectionDB("jdbc:postgresql://localhost:5432/",
+                                     "theorderdata","postgres","postgres1234"))
+        {
+            System.out.println("Erro: "+Database.getCon().getErrorMessage());
+            System.exit(0);
+        }
     }    
 
     @FXML

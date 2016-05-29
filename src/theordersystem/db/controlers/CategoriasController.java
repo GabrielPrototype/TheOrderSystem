@@ -27,7 +27,7 @@ public class CategoriasController {
     }
     
     public boolean modify(Categoria cat)
-    {   String sql="update categorias set nome='$1',descricao='$2' where ani_cod = $3";
+    {   String sql="update categorias set nome='$1',descricao='$2' where categoriaid = $3";
         sql=sql.replace("$1", cat.getNome());
         sql=sql.replace("$2", cat.getDescricao());
         sql=sql.replace("$3", "" + cat.getCategoriaID());

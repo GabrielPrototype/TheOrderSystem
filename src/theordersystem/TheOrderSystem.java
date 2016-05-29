@@ -28,11 +28,7 @@ public class TheOrderSystem extends Application {
      * @param args the command line arguments
      */
     public static void main(String[] args) {
-        if (!Database.openConnectionDB())
-        {
-            System.out.println("Erro: "+Database.getCon().getErrorMessage());
-            System.exit(0);
-        }
+        
         launch(args);
     }
     
