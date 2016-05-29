@@ -9,17 +9,17 @@ public class CtrRaca
 {   public boolean salvar(Raca r)
     {   String sql="insert into raca (rac_nome) values ('$1')";
         sql=sql.replace("$1", r.getNome());
-        return Database.getCon().manipulate(sql);
+        return Database.getCon().manipulateSQL(sql);
     }
     public boolean apagar(Raca r)
     {  String sql="delete from raca where rac_cod = "+r.getCod();
-       return Database.getCon().manipulate(sql);
+       return Database.getCon().manipulateSQL(sql);
     }
     public boolean alterar(Raca r)
     {  String sql="update raca set rac_nome = '$1' where rac_cod = $2";
        sql=sql.replace("$1", r.getNome());
        sql=sql.replace("$2", ""+r.getCod());    
-       return Database.getCon().manipulate(sql);
+       return Database.getCon().manipulateSQL(sql);
     }
     public Raca getRaca(int cod)
     {   Raca r=null;

@@ -46,7 +46,7 @@ public class ConnectionDB
         else return true;
     }
     
-    public boolean manipulate(String sql){ // inserir, alterar,excluir
+    public boolean manipulateSQL(String sql){ // inserir, alterar,excluir
         try {
             Statement statement = connect.createStatement();
             int result = statement.executeUpdate( sql );

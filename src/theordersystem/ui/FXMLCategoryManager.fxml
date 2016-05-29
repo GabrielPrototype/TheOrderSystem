@@ -33,8 +33,9 @@
                <center>
                   <TableView fx:id="tviewResult" onMouseClicked="#tviewResult_MouseClicked" prefHeight="200.0" prefWidth="200.0" BorderPane.alignment="CENTER">
                      <columns>
-                        <TableColumn fx:id="colCod" prefWidth="72.0" text="ID:" />
-                        <TableColumn fx:id="colName" prefWidth="162.0" text="Descrição" />
+                        <TableColumn fx:id="colCod" prefWidth="35.0" text="ID:" />
+                        <TableColumn fx:id="colName" prefWidth="92.0" text="Nome" />
+                        <TableColumn fx:id="colDesc" prefWidth="122.0" text="Descrição" />
                      </columns>
                   </TableView>
                </center>
@@ -46,8 +47,10 @@
                         <Tooltip text="Identidade interna do Cliente" />
                      </tooltip></Label>
                   <TextField fx:id="tfieldCod" layoutX="15.0" layoutY="31.0" prefHeight="25.0" prefWidth="63.0" AnchorPane.leftAnchor="10.0" />
-                  <Label layoutX="15.0" layoutY="96.0" text="Descrição:" />
-                  <TextArea fx:id="tareaDescription" layoutX="14.0" layoutY="118.0" prefHeight="226.0" prefWidth="320.0" promptText="Descreva a categoria aqui" wrapText="true" AnchorPane.bottomAnchor="10.0" AnchorPane.leftAnchor="10.0" AnchorPane.rightAnchor="10.0" AnchorPane.topAnchor="118.0" />
+                  <Label layoutX="15.0" layoutY="137.0" text="Descrição:" />
+                  <TextArea fx:id="tareaDescription" layoutX="14.0" layoutY="153.0" prefHeight="191.0" prefWidth="320.0" promptText="Descreva a categoria aqui" wrapText="true" AnchorPane.bottomAnchor="10.0" AnchorPane.leftAnchor="10.0" AnchorPane.rightAnchor="10.0" AnchorPane.topAnchor="153.0" />
+                  <TextField fx:id="tfieldName" layoutX="10.0" layoutY="85.0" />
+                  <Label layoutX="15.0" layoutY="69.0" text="Nome" />
                </children>
             </AnchorPane>
          </items>

@@ -15,7 +15,7 @@ public class CtrAnimal
         sql=sql.replace("$3", a.getDtnasc().toString());
         sql=sql.replace("$4", ""+a.getRaca().getCod());
         
-        return Database.getCon().manipulate(sql);
+        return Database.getCon().manipulateSQL(sql);
     }
     public boolean alterar(Animal a)
     {   String sql="update animal set ani_nome='$1',ani_peso=$2,ani_dtnasc='$3',"
@@ -26,11 +26,11 @@ public class CtrAnimal
         sql=sql.replace("$4", ""+a.getRaca().getCod());
         sql=sql.replace("$5", ""+a.getCod());
         
-        return Database.getCon().manipulate(sql);
+        return Database.getCon().manipulateSQL(sql);
     }
     public boolean apagar(Animal a)
     {  String sql="delete from animal where ani_cod = "+a.getCod();
-       return Database.getCon().manipulate(sql);
+       return Database.getCon().manipulateSQL(sql);
     }
     public Animal getAnimal(int cod)
     {   Animal a=null;

@@ -23,7 +23,7 @@ public class CategoriasControler {
         sql=sql.replace("$1", cat.getNome());
         sql=sql.replace("$2", cat.getDescricao());
         
-        return Database.getCon().manipulate(sql);
+        return Database.getCon().manipulateSQL(sql);
     }
     
     public boolean modify(Categoria cat)
@@ -32,19 +32,19 @@ public class CategoriasControler {
         sql=sql.replace("$2", cat.getDescricao());
         sql=sql.replace("$3", "" + cat.getCategoriaID());
         
-        return Database.getCon().manipulate(sql);
+        return Database.getCon().manipulateSQL(sql);
     }
     
     public boolean delete(Categoria cat)
     {  String sql="delete from categorias where ani_cod = " + cat.getCategoriaID();
-       return Database.getCon().manipulate(sql);
+       return Database.getCon().manipulateSQL(sql);
     }
     
     public Categoria getCategoria(int cod)
     {   Categoria cat = null;
         CategoriasControler CatCtrl = new CategoriasControler();
         
-        String sql="select * from animal where ani_cod = "+cod;
+        String sql="select * from categorias where categoriaid = " + cod;
         ResultSet rs = Database.getCon().consult(sql);
         try {
             if(rs.next())
@@ -56,10 +56,10 @@ public class CategoriasControler {
         return cat;
     }
     
-    public ArrayList <Categoria> getAnimais(String filtro){
+    public ArrayList <Categoria> getCategorias(String filtro){
         
         ArrayList <Categoria> categorias = new ArrayList();
-        CtrRaca ctrr=new CtrRaca();
+        CategoriasControler CatCtrl = new CategoriasControler();
         String sql = "select * from categorias";
         
         if (!filtro.isEmpty())
