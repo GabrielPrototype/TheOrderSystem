@@ -191,12 +191,12 @@ public class FXMLCategoryManagerController implements Initializable {
 
     @FXML
     private void tfieldSearch_Action(ActionEvent event) {
-        LoadTableView("upper(nome) like '%"+tfieldName.getText().toUpperCase()+"%'");
+        LoadTableView("upper(nome) like '%"+tfieldSearch.getText().toUpperCase()+"%'");
     }
 
     @FXML
     private void btnSearch_Action(ActionEvent event) {
-        LoadTableView("upper(nome) like '%"+tfieldName.getText().toUpperCase()+"%'");
+        LoadTableView("upper(nome) like '%"+tfieldSearch.getText().toUpperCase()+"%'");
     }
 
     @FXML
