@@ -14,7 +14,7 @@ import theordersystem.db.util.Database;
  *
  * @author titan
  */
-public class CategoriasControler {
+public class CategoriasController {
     
     public boolean save(Categoria cat)
     {   String sql = "insert into categorias (nome,descricao) "
@@ -36,13 +36,13 @@ public class CategoriasControler {
     }
     
     public boolean delete(Categoria cat)
-    {  String sql="delete from categorias where ani_cod = " + cat.getCategoriaID();
+    {  String sql="delete from categorias where categoriaid = " + cat.getCategoriaID();
        return Database.getCon().manipulateSQL(sql);
     }
     
     public Categoria getCategoria(int cod)
     {   Categoria cat = null;
-        CategoriasControler CatCtrl = new CategoriasControler();
+        CategoriasController CatCtrl = new CategoriasController();
         
         String sql="select * from categorias where categoriaid = " + cod;
         ResultSet rs = Database.getCon().consult(sql);
@@ -59,7 +59,7 @@ public class CategoriasControler {
     public ArrayList <Categoria> getCategorias(String filtro){
         
         ArrayList <Categoria> categorias = new ArrayList();
-        CategoriasControler CatCtrl = new CategoriasControler();
+        CategoriasController CatCtrl = new CategoriasController();
         String sql = "select * from categorias";
         
         if (!filtro.isEmpty())

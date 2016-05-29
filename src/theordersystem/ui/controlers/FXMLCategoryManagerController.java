@@ -16,6 +16,7 @@ import javafx.fxml.Initializable;
 import javafx.scene.Node;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
+import javafx.scene.control.ButtonType;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.TextArea;
@@ -25,7 +26,7 @@ import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.BorderPane;
-import theordersystem.db.controlers.CategoriasControler;
+import theordersystem.db.controlers.CategoriasController;
 import theordersystem.db.entities.Categoria;
 
 /**
@@ -115,7 +116,7 @@ public class FXMLCategoryManagerController implements Initializable {
      }
     
     private void LoadTableView(String filtro)
-    {  CategoriasControler ctr = new CategoriasControler();
+    {  CategoriasController ctr = new CategoriasController();
        ArrayList <Categoria> res = ctr.getCategorias(filtro);
        ObservableList<Categoria> modelo;
        modelo = FXCollections.observableArrayList(res);
@@ -130,7 +131,11 @@ public class FXMLCategoryManagerController implements Initializable {
 
     @FXML
     private void btnModify_Action(ActionEvent event) {
-        LayoutEditing();
+        Categoria cat = (Categoria) tviewResult.getSelectionModel().getSelectedItem();
+        tfieldCod.setText("" + cat.getCategoriaID());
+        tfieldName.setText(cat.getNome());
+        tareaDescription.setText("" + cat.getDescricao());
+        LayoutEditing();   
     }
 
     @FXML
@@ -144,7 +149,7 @@ public class FXMLCategoryManagerController implements Initializable {
         Categoria cat = new Categoria(cod, tfieldName.getText(), 
                                     tareaDescription.getText());
         
-        CategoriasControler ctr = new CategoriasControler();
+        CategoriasController ctr = new CategoriasController();
         Alert a = new Alert(Alert.AlertType.INFORMATION);
         if (cat.getCategoriaID()== 0) // novo cadastro
         {
@@ -172,6 +177,16 @@ public class FXMLCategoryManagerController implements Initializable {
 
     @FXML
     private void btnDelete_Action(ActionEvent event) {
+        Alert a = new Alert(Alert.AlertType.CONFIRMATION);
+        a.setContentText("Confirma a exclusão?");
+        if (a.showAndWait().get() == ButtonType.OK) 
+        {
+            CategoriasController ctr = new CategoriasController();
+            Categoria cat;
+            cat = tviewResult.getSelectionModel().getSelectedItem();
+            ctr.delete(cat);
+            LoadTableView("");
+        }
     }
 
     @FXML
@@ -185,6 +200,11 @@ public class FXMLCategoryManagerController implements Initializable {
 
     @FXML
     private void tviewResult_MouseClicked(MouseEvent event) {
+        if (tviewResult.getSelectionModel().getSelectedIndex() >= 0)
+        {
+            btnDelete.setDisable(false);
+            btnModify.setDisable(false);
+        }
     }
     
 }

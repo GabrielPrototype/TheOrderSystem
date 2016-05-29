@@ -31,11 +31,11 @@
                   </FlowPane>
                </top>
                <center>
-                  <TableView fx:id="tviewResult" onMouseClicked="#tviewResult_MouseClicked" prefHeight="200.0" prefWidth="200.0" BorderPane.alignment="CENTER">
+                  <TableView fx:id="tviewResult" onMouseClicked="#tviewResult_MouseClicked" prefHeight="200.0" prefWidth="200.0" stylesheets="@stylesheets/tableview.css" BorderPane.alignment="CENTER">
                      <columns>
-                        <TableColumn fx:id="colCod" prefWidth="35.0" text="ID:" />
-                        <TableColumn fx:id="colName" prefWidth="92.0" text="Nome" />
-                        <TableColumn fx:id="colDesc" prefWidth="122.0" text="Descrição" />
+                        <TableColumn fx:id="colCod" editable="false" prefWidth="35.0" text="ID:" />
+                        <TableColumn fx:id="colName" editable="false" prefWidth="92.0" text="Nome" />
+                        <TableColumn fx:id="colDesc" editable="false" prefWidth="122.0" text="Descrição" />
                      </columns>
                   </TableView>
                </center>
