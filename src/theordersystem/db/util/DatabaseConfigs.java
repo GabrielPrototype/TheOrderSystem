@@ -10,12 +10,13 @@ import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
+import java.io.Serializable;
 
 /**
  *
  * @author titan
  */
-public class DatabaseConfigs {
+public class DatabaseConfigs implements Serializable {
     
     private String local;
     private String database;
@@ -70,7 +71,7 @@ public class DatabaseConfigs {
     }
     
         public void writeConfigs(){
-        this.writeConfigs("/Files/conf/DefaultConfigs.ordersys");
+        this.writeConfigs("Files/conf/DefaultConfigs.ordersys");
     }
     
     public void writeConfigs(String path){
@@ -89,7 +90,7 @@ public class DatabaseConfigs {
     };
     
     public static DatabaseConfigs loadConfigs(){
-        return DatabaseConfigs.loadConfigs("/Files/conf/DefaultConfigs.ordersys");
+        return DatabaseConfigs.loadConfigs("Files/conf/DefaultConfigs.ordersys");
     }
     
     public static DatabaseConfigs loadConfigs(String path){

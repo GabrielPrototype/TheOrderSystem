@@ -7,8 +7,9 @@ public class Database
     {
         if(con == null)
         {
-           con = new ConnectionDB("jdbc:postgresql://localhost:5432/",
-                                     "theorderdata","postgres","postgres1234");
+           //con = new ConnectionDB("jdbc:postgresql://localhost:5432/",
+                                    // "theorderdata","postgres","postgres1234");
+           con = new ConnectionDB();
         }
         return con.getConnectionStatus();
     }

@@ -30,8 +30,11 @@ public class TheOrderSystem extends Application {
      * @param args the command line arguments
      */
     public static void main(String[] args) {
-        databaseConfigs = new DatabaseConfigs("jdbc:postgresql://localhost:5432/","theorderdata","postgres","postgres1234");
-        databaseConfigs.writeConfigs();
+        //databaseConfigs = new DatabaseConfigs("jdbc:postgresql://localhost:5432/","theorderdata","postgres","postgres1234");
+        databaseConfigs = DatabaseConfigs.loadConfigs();
+        
+        //databaseConfigs.writeConfigs();
+        
         launch(args);
     }
     

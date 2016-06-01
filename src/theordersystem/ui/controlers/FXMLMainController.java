@@ -20,8 +20,7 @@ import theordersystem.db.util.Database;
 /**
  * FXML Controller class
  *
- * @author Gabriel Longo P. Abreu
- * @author Aleksander Silva
+ * @author titan
  */
 public class FXMLMainController implements Initializable {
 
@@ -45,11 +44,11 @@ public class FXMLMainController implements Initializable {
     private MenuItem RelatProd;
     @FXML
     private MenuItem RelatCliente;
+    @FXML
+    private MenuItem miConfigs;
 
     /**
      * Initializes the controller class.
-     * @param url
-     * @param rb
      */
     @Override
     public void initialize(URL url, ResourceBundle rb) {
@@ -61,8 +60,7 @@ public class FXMLMainController implements Initializable {
     }    
 
     @FXML
-    private void miCategories_Action(ActionEvent event) 
-    {
+    private void miCategories_Action(ActionEvent event) {
         try
         {
            Stage stage = new Stage();
@@ -79,7 +77,21 @@ public class FXMLMainController implements Initializable {
         
     }
 
-    private void miConfig_Action(ActionEvent event) {
+    @FXML
+    private void miProd_Action(ActionEvent event) {
+        try
+        {
+           Stage stage = new Stage();
+           Parent root = FXMLLoader.load(getClass().getResource("/theordersystem/ui/FXMLProductManager.fxml"));
+        
+           Scene scene = new Scene(root);
+           stage.setScene(scene);
+           stage.show();
+        }catch(Exception e){System.out.println(e);}
+    }
+    
+    @FXML
+    private void miConfigs_Action(ActionEvent event) {
         try
         {
            Stage stage = new Stage();
@@ -95,21 +107,7 @@ public class FXMLMainController implements Initializable {
            stage.show();
         }catch(Exception e){System.out.println(e);}
     }
-
-    @FXML
-    private void miProd_Action(ActionEvent event) 
-    {
-        try
-        {
-           Stage stage = new Stage();
-           Parent root = FXMLLoader.load(getClass().getResource("/theordersystem/ui/FXMLProductManager.fxml"));
-        
-           Scene scene = new Scene(root);
-           stage.setScene(scene);
-           stage.show();
-        }catch(Exception e){System.out.println(e);}
-    }
-
+    
     @FXML
     private void P_nprod(ActionEvent event) {
     }
@@ -137,5 +135,7 @@ public class FXMLMainController implements Initializable {
     @FXML
     private void relat_cli(ActionEvent event) {
     }
+
+    
     
 }
