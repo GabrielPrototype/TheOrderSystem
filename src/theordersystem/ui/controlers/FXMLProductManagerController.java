@@ -14,6 +14,7 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.Node;
+import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.TableColumn;
@@ -136,14 +137,55 @@ public class FXMLProductManagerController implements Initializable {
     @FXML
     private void btnNew_Action(ActionEvent event) {
         LayoutEditing();
+        tfieldID.setDisable(true);
     }
 
     @FXML
     private void btnModify_Action(ActionEvent event) {
+        CategoriasController catCtrl = new CategoriasController();
+        Produto prod = (Produto) tviewResult.getSelectionModel().getSelectedItem();
+        tfieldID.setText("" + prod.getProdutoID());
+        tfieldName.setText(prod.getNome());
+        cbCategory.setValue(prod.getCategoriaid());
+        tfieldPrice.setText(""+ prod.getPreco());
+        tfieldEst.setText(""+prod.getEstoque());
+        LayoutEditing();
     }
 
     @FXML
     private void btnDelete_Action(ActionEvent event) {
+        int cod;
+        try {
+            cod = Integer.parseInt(tfieldID.getText());
+        } catch (Exception e) {
+            cod = 0;
+        }
+        CategoriasController cat = new CategoriasController();
+        Produto prod = new Produto(  cod, tfieldName.getText(),
+                                    cat.getCategoria(cod),tfieldPrice.getText(), 
+                                    tfieldEst.getText());
+        
+        
+        
+        CategoriasController ctr = new CategoriasController();
+        Alert a = new Alert(Alert.AlertType.INFORMATION);
+        if (prod.getCategoriaID()== 0) // novo cadastro
+        {
+            if (ctr.save(prod)) {
+                a.setContentText("Gravado com Sucesso");
+            } else {
+                a.setContentText("Problemas ao Gravar");
+            }
+        } else //alteração de cadastro
+        {
+            if (ctr.modify(prod)) {
+                a.setContentText("Alterado com Sucesso");
+            } else {
+                a.setContentText("Problemas ao Alterar");
+            }
+        }
+        a.showAndWait();
+        LayoutOriginal();
     }
 
     @FXML
