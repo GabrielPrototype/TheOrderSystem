@@ -48,11 +48,11 @@ public class Produto {
         this.nome = nome;
     }
 
-    public Categoria getCategoriaid() {
+    public Categoria getCategoria() {
         return categoria;
     }
 
-    public void setCategoriaid(Categoria categoria) {
+    public void setCategoria(Categoria categoria) {
         this.categoria = categoria;
     }
 
