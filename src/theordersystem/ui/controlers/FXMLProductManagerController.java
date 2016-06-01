@@ -14,7 +14,9 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.Node;
+import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
+import javafx.scene.control.ButtonType;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
@@ -24,6 +26,7 @@ import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.BorderPane;
+import javafx.stage.Stage;
 import theordersystem.db.controlers.CategoriasController;
 import theordersystem.db.controlers.ProdutosController;
 import theordersystem.db.entities.Categoria;
@@ -134,36 +137,97 @@ public class FXMLProductManagerController implements Initializable {
     }
     
     @FXML
-    private void btnNew_Action(ActionEvent event) {
+    private void btnNew_Action(ActionEvent event) 
+    {
         LayoutEditing();
     }
 
     @FXML
-    private void btnModify_Action(ActionEvent event) {
+    private void btnModify_Action(ActionEvent event) 
+    {
+        Produto p = (Produto) tviewResult.getSelectionModel().getSelectedItem();
+        tfieldID.setText("" + p.getProdutoID());
+        tfieldName.setText(p.getNome());
+        tfieldPrice.setText("" + p.getPreco());
+        tfieldEst.setText("" + p.getEstoque());
+        LayoutOriginal();
     }
 
     @FXML
-    private void btnDelete_Action(ActionEvent event) {
+    private void btnDelete_Action(ActionEvent event) 
+    {
+        Alert a = new Alert(Alert.AlertType.CONFIRMATION);
+        a.setContentText("Confirma a exclusão");
+        if (a.showAndWait().get() == ButtonType.OK) 
+        {
+            ProdutosController ctr = new ProdutosController();
+            Produto p;
+            p = tviewResult.getSelectionModel().getSelectedItem();
+            ctr.delete(p.getProdutoID());
+            LoadTableView("");
+        }
     }
 
     @FXML
-    private void btnConfirm_Action(ActionEvent event) {
+    private void btnConfirm_Action(ActionEvent event)
+    {
+        int cod;
+        try 
+        {
+            cod = Integer.parseInt(tfieldID.getText());
+        } catch (Exception e) 
+        {
+            cod = 0;
+        }
+        Produto p = new Produto(tfieldName.getText(),cbCategory.getSelectionModel().getSelectedItem(),Double.parseDouble(tfieldPrice.getText()),Integer.parseInt(tfieldEst.getText()));
+        ProdutosController ctr = new ProdutosController();
+        Alert a = new Alert(Alert.AlertType.INFORMATION);
+        if (p.getProdutoID()== 0) // novo cadastro
+        {
+            if (ctr.save(p)) {
+                a.setContentText("Gravado com Sucesso");
+            } else {
+                a.setContentText("Problemas ao Gravar");
+            }
+        } else //alteração de cadastro
+        if (ctr.modify(p)) {
+            a.setContentText("Alterado com Sucesso");
+        } else {
+            a.setContentText("Problemas ao Alterar");
+        }
+        a.showAndWait();
+        LayoutOriginal();
     }
 
     @FXML
-    private void btnCancel_Action(ActionEvent event) {
+    private void btnCancel_Action(ActionEvent event) 
+    {
+        if(!pnInfos.isDisabled())
+            LayoutOriginal();
+        else
+            ((Stage)((Node)event.getSource()).getScene().getWindow()).close();
     }
 
     @FXML
-    private void tfieldSearch_Action(ActionEvent event) {
+    private void tfieldSearch_Action(ActionEvent event) 
+    {
+        LoadTableView("upper(nome) like '%"+tfieldSearch.getText().toUpperCase()+"%'");
     }
 
     @FXML
-    private void btnSearch_Action(ActionEvent event) {
+    private void btnSearch_Action(ActionEvent event)
+    {
+        LoadTableView("upper(nome) like '%"+tfieldSearch.getText().toUpperCase()+"%'");
     }
 
     @FXML
-    private void tviewResult_MouseClicked(MouseEvent event) {
+    private void tviewResult_MouseClicked(MouseEvent event) 
+    {
+        if (tviewResult.getSelectionModel().getSelectedIndex() >= 0)
+        {
+            btnDelete.setDisable(false);
+            btnModify.setDisable(false);
+        }
     }
 
     
