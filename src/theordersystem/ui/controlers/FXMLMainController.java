@@ -62,7 +62,7 @@ public class FXMLMainController implements Initializable {
     
     private void checkConnectionDB(){
         
-        while(!Database.openConnectionDB()){
+        if(!Database.openConnectionDB()){
             System.out.println("Erro: "+Database.getCon().getErrorMessage());
             Alert a = new Alert(Alert.AlertType.CONFIRMATION);
             a.setContentText("Ocorreu ume erro na conexão com banco, deseja configura-lo?");

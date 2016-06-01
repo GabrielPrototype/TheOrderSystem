@@ -73,7 +73,7 @@ public class FXMLConfigsController implements Initializable {
             databaseConfigs = new DatabaseConfigs(    tfieldURL.getText(), tfieldDataBase.getText(), 
                                                     tfieldUser.getText(), tfieldPassword.getText());
             
-        if(!databaseConfigs.writeConfigs("/Files/conf/UserConfigs.ordersys")){
+        if(!databaseConfigs.writeConfigs("Files/conf/UserConfigs.ordersys")){
            Alert a = new Alert(Alert.AlertType.INFORMATION);
            a.setContentText("Ocorreu um erro ao salvar as configurações!");
            a.showAndWait();
