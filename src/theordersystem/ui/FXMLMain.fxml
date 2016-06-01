@@ -1,10 +1,12 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.Menu?>
 <?import javafx.scene.control.MenuBar?>
 <?import javafx.scene.control.MenuItem?>
+<?import javafx.scene.control.ToolBar?>
 <?import javafx.scene.input.KeyCodeCombination?>
 <?import javafx.scene.layout.BorderPane?>
 <?import javafx.scene.layout.FlowPane?>
@@ -63,6 +65,12 @@
                 </Menu>
               </menus>
             </MenuBar>
+            <ToolBar prefHeight="40.0" prefWidth="200.0">
+              <items>
+                <Button minWidth="-Infinity" mnemonicParsing="false" styleClass="defaultbutton" stylesheets="@stylesheets/defaultcss.css" text="Novo Pedido" />
+                  <Button minWidth="-Infinity" mnemonicParsing="false" styleClass="defaultbutton" stylesheets="@stylesheets/defaultcss.css" text="Novo Produto" />
+              </items>
+            </ToolBar>
          </children>
       </VBox>
    </top>
@@ -77,4 +85,3 @@
       </FlowPane>
    </bottom>
 </BorderPane>
-

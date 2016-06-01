@@ -107,7 +107,7 @@ public class FXMLProd implements Initializable {
        ArrayList <Produto> res = ctr.getProdutos(filtro);
        ObservableList<Produto> modelo;
        modelo = FXCollections.observableArrayList(res);
-       tbProdutos.setItems(modelo);
+     //  tbProdutos.setItems(modelo);
     }
     @Override
     public void initialize(URL url, ResourceBundle rb) {
