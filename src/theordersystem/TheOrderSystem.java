@@ -31,6 +31,7 @@ public class TheOrderSystem extends Application {
      */
     public static void main(String[] args) {
         databaseConfigs = new DatabaseConfigs("jdbc:postgresql://localhost:5432/","theorderdata","postgres","postgres1234");
+        databaseConfigs.writeConfigs();
         launch(args);
     }
     
