@@ -40,8 +40,6 @@ public class TheOrderSystem extends Application {
             
         }
 
-        
-        
         //databaseConfigs.writeConfigs();
         
         launch(args);

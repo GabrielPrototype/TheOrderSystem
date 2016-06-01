@@ -7,7 +7,6 @@ package theordersystem.db.controlers;
 
 import java.sql.ResultSet;
 import java.util.ArrayList;
-import theordersystem.db.entities.Categoria;
 import theordersystem.db.entities.Produto;
 import theordersystem.db.util.Database;
 
@@ -15,7 +14,7 @@ import theordersystem.db.util.Database;
  *
  * @author titan
  */
-public class ProdutosControler {
+public class ProdutosController {
     
     public boolean save(Produto prod)
     {   String sql = "insert into produtos (nome,categoriaid,preco,estoque) "
@@ -48,7 +47,7 @@ public class ProdutosControler {
     
     public Produto getProduto(int cod)
     {   Produto prod = null;
-        ProdutosControler ProdCtrl = new ProdutosControler();
+        CategoriasController CatCtrl = new CategoriasController();
         
         String sql="select * from produtos where produtoid = " + cod;
         ResultSet rs = Database.getCon().consult(sql);
@@ -56,7 +55,7 @@ public class ProdutosControler {
             if(rs.next()){
                prod = new   Produto(  rs.getInt("produtoid"),
                                     rs.getString("nome"),
-                                    rs.getInt("categoriaid"),
+                                    CatCtrl.getCategoria(rs.getInt("categoriaid")),
                                     rs.getDouble("preco"),
                                     rs.getInt("estoque")
                             );
@@ -71,7 +70,7 @@ public class ProdutosControler {
     public ArrayList <Produto> getProdutos(String filtro){
         
         ArrayList <Produto> categorias = new ArrayList();
-        ProdutosControler ProdCtrl = new ProdutosControler();
+        CategoriasController CatCtrl = new CategoriasController();
         String sql = "select * from produtos";
         
         if (!filtro.isEmpty())
@@ -82,7 +81,7 @@ public class ProdutosControler {
             while(rs.next()){
                 categorias.add( new Produto(  rs.getInt("produtoid"),
                                     rs.getString("nome"),
-                                    rs.getInt("categoriaid"),
+                                    CatCtrl.getCategoria(rs.getInt("categoriaid")),
                                     rs.getDouble("preco"),
                                     rs.getInt("estoque")
                                 )

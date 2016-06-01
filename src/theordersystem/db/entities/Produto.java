@@ -13,23 +13,23 @@ public class Produto {
     
     private int produtoID;
     private String nome;
-    private int categoriaid;
+    private Categoria categoria;
     private double preco;
     private int estoque;
 
     public Produto() {
     }
 
-    public Produto(int produtoid, String nome, int categoriaid, double preco, int estoque) {
+    public Produto(int produtoid, String nome, Categoria categoria, double preco, int estoque) {
         this.produtoID = produtoid;
         this.nome = nome;
-        this.categoriaid = categoriaid;
+        this.categoria = categoria;
         this.preco = preco;
         this.estoque = estoque;
     }
 
-    public Produto(String nome, int categoriaid, double preco, int estoque) {
-        this(0, nome, categoriaid, preco, estoque);
+    public Produto(String nome, Categoria categoria, double preco, int estoque) {
+        this(0, nome, categoria, preco, estoque);
     }
 
     public int getProdutoID() {
@@ -48,12 +48,12 @@ public class Produto {
         this.nome = nome;
     }
 
-    public int getCategoriaid() {
-        return categoriaid;
+    public Categoria getCategoriaid() {
+        return categoria;
     }
 
-    public void setCategoriaid(int categoriaid) {
-        this.categoriaid = categoriaid;
+    public void setCategoriaid(Categoria categoria) {
+        this.categoria = categoria;
     }
 
     public double getPreco() {

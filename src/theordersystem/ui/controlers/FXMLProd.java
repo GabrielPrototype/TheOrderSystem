@@ -24,7 +24,7 @@ import javafx.scene.control.TextInputControl;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.BorderPane;
-import theordersystem.db.controlers.ProdutosControler;
+import theordersystem.db.controlers.ProdutosController;
 import theordersystem.db.entities.Produto;
 
 /**
@@ -103,7 +103,7 @@ public class FXMLProd implements Initializable {
     }
     private void LoadTableView(String filtro)
     {  
-       ProdutosControler ctr = new ProdutosControler();
+       ProdutosController ctr = new ProdutosController();
        ArrayList <Produto> res = ctr.getProdutos(filtro);
        ObservableList<Produto> modelo;
        modelo = FXCollections.observableArrayList(res);
