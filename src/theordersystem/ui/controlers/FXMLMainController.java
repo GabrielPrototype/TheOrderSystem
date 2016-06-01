@@ -111,6 +111,20 @@ public class FXMLMainController implements Initializable {
     }
 
     @FXML
+    private void miProd_Action(ActionEvent event) 
+    {
+        try
+        {
+           Stage stage = new Stage();
+           Parent root = FXMLLoader.load(getClass().getResource("/theordersystem/ui/FXMLProd.fxml"));
+        
+           Scene scene = new Scene(root);
+           stage.setScene(scene);
+           stage.show();
+        }catch(Exception e){System.out.println(e);}
+    }
+
+    @FXML
     private void P_nprod(ActionEvent event) {
     }
 
