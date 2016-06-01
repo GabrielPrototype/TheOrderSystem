@@ -6,7 +6,7 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
-import theordersystem.db.util.Database;
+import theordersystem.db.util.DatabaseConfigs;
 
 /**
  *
@@ -14,6 +14,8 @@ import theordersystem.db.util.Database;
  * @author Aleksander Silva
  */
 public class TheOrderSystem extends Application {
+    
+    public static DatabaseConfigs databaseConfigs;
     
     @Override
     public void start(Stage stage) throws Exception {
@@ -28,7 +30,7 @@ public class TheOrderSystem extends Application {
      * @param args the command line arguments
      */
     public static void main(String[] args) {
-        
+        databaseConfigs = new DatabaseConfigs("jdbc:postgresql://localhost:5432/","theorderdata","postgres","postgres1234");
         launch(args);
     }
     

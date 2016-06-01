@@ -16,6 +16,7 @@ import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.MenuItem;
 import javafx.stage.Stage;
+import static theordersystem.TheOrderSystem.databaseConfigs;
 import theordersystem.db.util.Database;
 
 /**
@@ -34,18 +35,20 @@ public class FXMLMainController implements Initializable {
     private MenuItem miCategories;
     @FXML
     private MenuItem miCustomers;
+    @FXML
+    private MenuItem miConfig;
 
     /**
      * Initializes the controller class.
+     * @param url
+     * @param rb
      */
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         // TODO
-        if (!Database.openConnectionDB("jdbc:postgresql://localhost:5432/",
-                                     "theorderdata","postgres","postgres1234"))
+        if (!Database.openConnectionDB())
         {
             System.out.println("Erro: "+Database.getCon().getErrorMessage());
-            System.exit(0);
         }
     }    
 
@@ -64,13 +67,23 @@ public class FXMLMainController implements Initializable {
 
     @FXML
     private void miCustomers_Action(ActionEvent event) {
+        
+    }
+
+    @FXML
+    private void miConfig_Action(ActionEvent event) {
         try
         {
            Stage stage = new Stage();
-           Parent root = FXMLLoader.load(getClass().getResource("/theordersystem/ui/FXMLCustomerManager.fxml"));
+           Parent root = FXMLLoader.load(getClass().getResource("/theordersystem/ui/FXMLConfigs.fxml"));
         
            Scene scene = new Scene(root);
-           stage.setScene(scene);
+           stage.setScene(scene); 
+//           dialog.setMinWidth(computeMinWidth(getHeight()) + (dialog.getWidth() - scene.getWidth()));
+//           dialog.setMinHeight(computeMinHeight(getWidth()) + (dialog.getHeight() - scene.getHeight())
+//           stage.setMinWidth(stage.getWidth());
+//           stage.setMinHeight(stage.getHeight());
+           stage.setResizable(false);
            stage.show();
         }catch(Exception e){System.out.println(e);}
     }

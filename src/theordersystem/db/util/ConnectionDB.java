@@ -5,6 +5,7 @@ import java.sql.DriverManager;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
+import static theordersystem.TheOrderSystem.databaseConfigs;
 
 public class ConnectionDB
 {   
@@ -14,15 +15,16 @@ public class ConnectionDB
     /**
      *
      * @param local
-     * @param banco
+     * @param database
      * @param user
      * @param password
      */
-    public ConnectionDB(String local,String banco,String user,String password){   
+    
+    public ConnectionDB(String local, String database, String user, String password){   
         
         try {
             //Class.forName(driver); //"org.postgresql.Driver");
-            String url = local+banco; //"jdbc:postgresql://localhost/"+banco;
+            String url = local+database; //"jdbc:postgresql://localhost/"+banco;
             connect = DriverManager.getConnection(url, user,password);
         }
         //catch ( ClassNotFoundException cnfex )
@@ -31,6 +33,11 @@ public class ConnectionDB
         { error = "Unable to connect Database: " + sqlex.toString(); }
         catch ( Exception ex )
         { error = "Other Error: " + ex.toString(); }
+    }
+    
+    public ConnectionDB(){
+        this(   databaseConfigs.getLocal(),databaseConfigs.getDatabase(),
+                databaseConfigs.getUser(), databaseConfigs.getPassword());
     }
     
     /**

@@ -13,11 +13,11 @@ public class Database
         return con.getConnectionStatus();
     }
     
-    static public boolean openConnectionDB(String local,String banco,String user,String password)
+    static public boolean openConnectionDB(String local, String database, String user, String password)
     {
         if(con == null)
         {
-           con = new ConnectionDB(local, banco, user, password);
+           con = new ConnectionDB(local, database, user, password);
         }
         return con.getConnectionStatus();
     }
@@ -27,3 +27,4 @@ public class Database
         return con;
     }
 }
+

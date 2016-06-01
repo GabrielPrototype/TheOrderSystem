@@ -57,8 +57,6 @@ public class FXMLCategoryManagerController implements Initializable {
     @FXML
     private TextField tfieldSearch;
     @FXML
-    private Button btnSearch;
-    @FXML
     private TableView<Categoria> tviewResult;
     @FXML
     private TableColumn colCod;
@@ -68,6 +66,8 @@ public class FXMLCategoryManagerController implements Initializable {
     private TextField tfieldName;
     @FXML
     private TableColumn colDesc;
+    @FXML
+    private Button btnSearch;
     
     /**
      * Initializes the controller class.
