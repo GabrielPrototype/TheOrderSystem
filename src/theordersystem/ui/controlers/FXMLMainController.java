@@ -13,8 +13,12 @@ import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.control.Alert;
+import javafx.scene.control.ButtonType;
 import javafx.scene.control.MenuItem;
 import javafx.stage.Stage;
+import theordersystem.db.controlers.CategoriasController;
+import theordersystem.db.entities.Categoria;
 import theordersystem.db.util.Database;
 
 /**
@@ -53,12 +57,33 @@ public class FXMLMainController implements Initializable {
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         // TODO
-        if (!Database.openConnectionDB())
-        {
-            System.out.println("Erro: "+Database.getCon().getErrorMessage());
-        }
+        checkConnectionDB();
     }    
+    
+    private void checkConnectionDB(){
+        
+        while(!Database.openConnectionDB()){
+            System.out.println("Erro: "+Database.getCon().getErrorMessage());
+            Alert a = new Alert(Alert.AlertType.CONFIRMATION);
+            a.setContentText("Ocorreu ume erro na conexão com banco, deseja configura-lo?");
+            
+            if (a.showAndWait().get() == ButtonType.OK) 
+            {
+                try
+                {
+                   Stage stage = new Stage();
+                   Parent root = FXMLLoader.load(getClass().getResource("/theordersystem/ui/FXMLConfigs.fxml"));
 
+                   Scene scene = new Scene(root);
+                   stage.setScene(scene); 
+                   stage.setResizable(false);
+                   stage.showAndWait();
+                }catch(Exception e){System.out.println(e);}
+            }
+        }
+        
+    };
+    
     @FXML
     private void miCategories_Action(ActionEvent event) {
         try

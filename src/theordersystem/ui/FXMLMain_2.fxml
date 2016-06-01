@@ -18,61 +18,61 @@
       <VBox prefHeight="9.0" prefWidth="600.0" BorderPane.alignment="CENTER">
          <children>
             <MenuBar>
-               <menus>
-                  <Menu text="_Arquivo">
-                     <items>
+              <menus>
+                <Menu text="_Arquivo">
+                  <items>
                         <MenuItem fx:id="miConfigs" onAction="#miConfigs_Action" text="_Configurações" />
                         <SeparatorMenuItem mnemonicParsing="false" />
-                        <MenuItem text="Sair">
+                    <MenuItem text="Sair">
                            <accelerator>
                               <KeyCodeCombination alt="DOWN" code="F4" control="UP" meta="UP" shift="UP" shortcut="UP" />
                            </accelerator>
                         </MenuItem>
-                     </items>
-                  </Menu>
-                  <Menu text="_Cadastros">
-                     <items>
-                        <MenuItem fx:id="miCategories" onAction="#miCategories_Action" text="C_ategorias" />
+                  </items>
+                </Menu>
+                <Menu text="_Cadastros">
+                  <items>
+                    <MenuItem fx:id="miCategories" onAction="#miCategories_Action" text="C_ategorias" />
                         <MenuItem fx:id="miCustomers" onAction="#miCustomers_Action" text="C_lientes" />
                         <MenuItem fx:id="miProd" onAction="#miProd_Action" text="P_rodutos" />
-                     </items>
-                  </Menu>
+                  </items>
+                </Menu>
                   <Menu text="_Pedidos">
-                     <items>
-                        <MenuItem fx:id="NewOrder" onAction="#P_nprod" text="Novo Pedido" />
+                    <items>
+                      <MenuItem fx:id="NewOrder" onAction="#P_nprod" text="Novo Pedido" />
                         <MenuItem fx:id="SearchOrder" onAction="#P_pprod" text="Procurar Pedido" />
-                     </items>
+                    </items>
                   </Menu>
                   <Menu text="_Altetar/Excluir">
-                     <items>
-                        <MenuItem fx:id="SearchCat" onAction="#alt_cat" text="Categorias" />
+                    <items>
+                      <MenuItem fx:id="SearchCat" onAction="#alt_cat" text="Categorias" />
                         <MenuItem fx:id="SearchCli" onAction="#alt_cli" text="Clientes" />
                         <MenuItem fx:id="SearchProd" onAction="#alt_prod" text="Produtos" />
-                     </items>
+                    </items>
                   </Menu>
                   <Menu text="_Relatórios">
-                     <items>
-                        <MenuItem fx:id="RelatProd" mnemonicParsing="false" onAction="#relat_prod" text="Produto" />
+                    <items>
+                      <MenuItem fx:id="RelatProd" mnemonicParsing="false" onAction="#relat_prod" text="Produto" />
                         <MenuItem fx:id="RelatCliente" mnemonicParsing="false" onAction="#relat_cli" text="Clientes" />
-                     </items>
+                    </items>
                   </Menu>
-                  <Menu text="_Ajuda">
-                     <items>
+                <Menu text="_Ajuda">
+                  <items>
                         <MenuItem text="_Ajuda">
                            <accelerator>
                               <KeyCodeCombination alt="UP" code="F1" control="UP" meta="UP" shift="UP" shortcut="ANY" />
                            </accelerator>
                         </MenuItem>
-                        <MenuItem text="_Sobre" />
-                     </items>
-                  </Menu>
-               </menus>
+                    <MenuItem text="_Sobre" />
+                  </items>
+                </Menu>
+              </menus>
             </MenuBar>
             <ToolBar prefHeight="40.0" prefWidth="200.0">
-               <items>
-                  <Button minWidth="-Infinity" mnemonicParsing="false" styleClass="defaultbutton" stylesheets="@stylesheets/defaultcss.css" text="Novo Pedido" />
+              <items>
+                <Button minWidth="-Infinity" mnemonicParsing="false" styleClass="defaultbutton" stylesheets="@stylesheets/defaultcss.css" text="Novo Pedido" />
                   <Button minWidth="-Infinity" mnemonicParsing="false" styleClass="defaultbutton" stylesheets="@stylesheets/defaultcss.css" text="Novo Produto" />
-               </items>
+              </items>
             </ToolBar>
          </children>
       </VBox>
@@ -83,8 +83,7 @@
             <Label text="TheOrderSystem v0.01">
                <padding>
                   <Insets right="10.0" />
-               </padding>
-            </Label>
+               </padding></Label>
          </children>
       </FlowPane>
    </bottom>

@@ -49,8 +49,7 @@ public class ConnectionDB
     }
     
     public boolean getConnectionStatus() {
-        if(connect == null)  return false;
-        else return true;
+        return connect != null;
     }
     
     public boolean manipulateSQL(String sql){ // inserir, alterar,excluir
@@ -69,7 +68,7 @@ public class ConnectionDB
     }
     
     public ResultSet consult(String sql){   
-        ResultSet rs=null;
+        ResultSet rs;
         try {
            Statement statement = connect.createStatement();
              //ResultSet.TYPE_SCROLL_INSENSITIVE,

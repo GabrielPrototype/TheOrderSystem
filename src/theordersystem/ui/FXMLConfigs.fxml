@@ -7,17 +7,19 @@
 <?import javafx.scene.layout.BorderPane?>
 <?import javafx.scene.layout.HBox?>
 
-<BorderPane maxHeight="500.0" maxWidth="370.0" minHeight="500.0" minWidth="370.0" prefHeight="500.0" prefWidth="370.0" xmlns="http://javafx.com/javafx/8.0.65" xmlns:fx="http://javafx.com/fxml/1" fx:controller="theordersystem.ui.controlers.FXMLConfigsController">
+<BorderPane maxHeight="500.0" maxWidth="391.0" minHeight="500.0" minWidth="370.0" prefHeight="500.0" prefWidth="391.0" xmlns="http://javafx.com/javafx/8.0.65" xmlns:fx="http://javafx.com/fxml/1" fx:controller="theordersystem.ui.controlers.FXMLConfigsController">
    <bottom>
       <HBox alignment="CENTER" prefHeight="44.0" prefWidth="600.0" spacing="10.0" style="-fx-background-color: gray;" BorderPane.alignment="CENTER">
          <children>
-            <Button fx:id="btnConfirm" layoutX="190.0" layoutY="10.0" mnemonicParsing="false" onAction="#btnConfirm_Action" prefHeight="32.0" prefWidth="90.0" text="Confirmar" />
-            <Button fx:id="btnCancel" layoutX="280.0" layoutY="10.0" mnemonicParsing="false" onAction="#btnCancel_Action" prefHeight="32.0" prefWidth="90.0" text="Cancelar" />
+            <Button fx:id="btnConfirm" layoutX="190.0" layoutY="10.0" mnemonicParsing="false" onAction="#btnConfirm_Action" prefHeight="32.0" prefWidth="85.0" text="Confirmar" />
+            <Button fx:id="btnClean" mnemonicParsing="false" onAction="#btnClean_Action" prefHeight="32.0" prefWidth="85.0" text="Limpar" />
+            <Button fx:id="btnRestore" layoutX="150.0" layoutY="16.0" mnemonicParsing="false" onAction="#btnRestore_Action" prefHeight="32.0" prefWidth="85.0" text="Restaurar" />
+            <Button fx:id="btnCancel" layoutX="280.0" layoutY="10.0" mnemonicParsing="false" onAction="#btnCancel_Action" prefHeight="32.0" prefWidth="85.0" text="Cancelar" />
          </children>
       </HBox>
    </bottom>
    <center>
-      <AnchorPane prefHeight="200.0" prefWidth="200.0" BorderPane.alignment="CENTER">
+      <AnchorPane fx:id="inputArea" prefHeight="456.0" prefWidth="380.0" BorderPane.alignment="CENTER">
          <children>
             <Label layoutX="14.0" layoutY="14.0" text="URL do Banco" />
             <TextField fx:id="tfieldURL" layoutX="14.0" layoutY="30.0" prefHeight="26.0" prefWidth="232.0" promptText="jdbc:postgresql://localhost:5433/" />

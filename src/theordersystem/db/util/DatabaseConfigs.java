@@ -74,7 +74,7 @@ public class DatabaseConfigs implements Serializable {
         this.writeConfigs("Files/conf/DefaultConfigs.ordersys");
     }
     
-    public void writeConfigs(String path){
+    public boolean writeConfigs(String path){
         
         FileOutputStream fos;
         ObjectOutputStream oos;
@@ -82,10 +82,12 @@ public class DatabaseConfigs implements Serializable {
             fos = new FileOutputStream(path);
             oos = new ObjectOutputStream(fos);
             oos.writeObject(this);
-            oos.close();           
+            oos.close();
+            return true;
         } catch (Exception e) 
         {
             System.out.println(e);
+            return false;
         } 
     };
     
