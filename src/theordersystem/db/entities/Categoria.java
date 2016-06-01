@@ -9,13 +9,15 @@ package theordersystem.db.entities;
  *
  * @author titan
  */
-public class Categoria {
+public class Categoria 
+{
     
     private int categoriaID;
     private String nome;
     private String descricao;
 
-    public Categoria() {
+    public Categoria()
+    {
     }
 
     public Categoria(int categoriaID, String nome, String descricao) {

@@ -6,7 +6,9 @@
 package theordersystem.ui.controlers;
 
 import java.net.URL;
+import java.util.ArrayList;
 import java.util.ResourceBundle;
+import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -20,6 +22,10 @@ import javafx.scene.control.TextInputControl;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.BorderPane;
+import theordersystem.db.controlers.CategoriasController;
+import theordersystem.db.controlers.ProdutosController;
+import theordersystem.db.entities.Categoria;
+import theordersystem.db.entities.Produto;
 
 /**
  * FXML Controller class
@@ -97,7 +103,17 @@ public class FXMLCustomerManagerController implements Initializable {
 
         //carregaTabela("");
     }
-    
+    private void LoadTableView(String filtro)
+    {  ProdutosController ctr = new ProdutosController();
+       ArrayList <Produto> res = ctr.getProdutos(filtro);
+       ObservableList<Produto> modelo;
+       modelo = FXCollections.observableArrayList(res);
+       tviewResult.setItems(modelo);
+       
+       CategoriasController catCtrl = new CategoriasController();
+       ArrayList <Categoria> cats = catCtrl.getCategorias("");
+       cbCategory.setItems(FXCollections.observableArrayList(cats));
+    }
     private void LayoutEditing()
     {     // carregar os componentes da tela (listbox, combobox, ...)
           // p.e. : carregaEstados();
@@ -111,33 +127,44 @@ public class FXMLCustomerManagerController implements Initializable {
      }
     
     @FXML
-    private void btnSearch_Action(ActionEvent event) {
+    private void btnSearch_Action(ActionEvent event)
+    {
+        LoadTableView("upper(nome) like '%"+tfieldSearch.getText().toUpperCase()+"%'");
     }
 
     @FXML
-    private void tviewResult_MouseClicked(MouseEvent event) {
+    private void tviewResult_MouseClicked(MouseEvent event)
+    {
+        
     }
 
     @FXML
-    private void btnNew_Action(ActionEvent event) {
+    private void btnNew_Action(ActionEvent event) 
+    {
         LayoutEditing();
     }
 
     @FXML
-    private void btnModify_Action(ActionEvent event) {
+    private void btnModify_Action(ActionEvent event) 
+    {
         LayoutEditing();
     }
 
     @FXML
-    private void btnDelete_Action(ActionEvent event) {
+    private void btnDelete_Action(ActionEvent event) 
+    {
+        
     }
 
     @FXML
-    private void btnConfirm_Action(ActionEvent event) {
+    private void btnConfirm_Action(ActionEvent event) 
+    {
+        
     }
 
     @FXML
-    private void btnCancel_Action(ActionEvent event) {
+    private void btnCancel_Action(ActionEvent event) 
+    {
         LayoutOriginal();
     }
     

@@ -121,7 +121,8 @@ public class FXMLProductManagerController implements Initializable {
           pnInfos.setDisable(false);
           btnConfirm.setDisable(false);
           btnDelete.setDisable(true);
-          btnModify.setDisable(true); 
+          btnModify.setDisable(true);
+          tfieldName.requestFocus();  
      }
     
     private void LoadTableView(String filtro)
@@ -150,7 +151,7 @@ public class FXMLProductManagerController implements Initializable {
         tfieldName.setText(p.getNome());
         tfieldPrice.setText("" + p.getPreco());
         tfieldEst.setText("" + p.getEstoque());
-        LayoutOriginal();
+        LayoutEditing();
     }
 
     @FXML
@@ -179,22 +180,37 @@ public class FXMLProductManagerController implements Initializable {
         {
             cod = 0;
         }
-        Produto p = new Produto(tfieldName.getText(),cbCategory.getSelectionModel().getSelectedItem(),Double.parseDouble(tfieldPrice.getText()),Integer.parseInt(tfieldEst.getText()));
+        Produto p = new Produto(    cod,tfieldName.getText(),cbCategory.getSelectionModel().getSelectedItem(),
+                                    Double.parseDouble(tfieldPrice.getText()),Integer.parseInt(tfieldEst.getText()));
         ProdutosController ctr = new ProdutosController();
         Alert a = new Alert(Alert.AlertType.INFORMATION);
-        if (p.getProdutoID()== 0) // novo cadastro
-        {
-            if (ctr.save(p)) {
-                a.setContentText("Gravado com Sucesso");
-            } else {
-                a.setContentText("Problemas ao Gravar");
-            }
-        } else //alteração de cadastro
-        if (ctr.modify(p)) {
-            a.setContentText("Alterado com Sucesso");
-        } else {
-            a.setContentText("Problemas ao Alterar");
+        if(p.getPreco()>0 && p.getEstoque()>0)
+        {   
+            
+            if (p.getProdutoID()== 0) // novo cadastro
+            {
+                    if (ctr.save(p)) 
+                    {
+                        a.setContentText("Gravado com Sucesso");
+                    }
+                    else
+                        a.setContentText("Erro ao gravar");
+            } 
+            else
+            {
+                    if (ctr.modify(p)) 
+                    {
+                        a.setContentText("Alterado com Sucesso");
+                    }
+                    else
+                        a.setContentText("Erro ao alterar");
+ 
+            }//alteração de cadastro
         }
+        else{
+           a.setContentText("Estoque ou Preco incorreto"); 
+        }
+        
         a.showAndWait();
         LayoutOriginal();
     }
