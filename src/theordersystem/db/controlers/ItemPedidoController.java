@@ -8,7 +8,6 @@ package theordersystem.db.controlers;
 import java.sql.ResultSet;
 import java.util.ArrayList;
 import theordersystem.db.entities.ItemPedido;
-import theordersystem.db.entities.Produto;
 import theordersystem.db.util.Database;
 
 /**
@@ -94,4 +93,4 @@ public class ItemPedidoController {
         }
         return iPedidos;
     }
-}
+}    
