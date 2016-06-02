@@ -42,7 +42,6 @@ public class CategoriasController {
     
     public Categoria getCategoria(int cod)
     {   Categoria cat = null;
-        CategoriasController CatCtrl = new CategoriasController();
         
         String sql="select * from categorias where categoriaid = " + cod;
         ResultSet rs = Database.getCon().consult(sql);
@@ -59,7 +58,6 @@ public class CategoriasController {
     public ArrayList <Categoria> getCategorias(String filtro){
         
         ArrayList <Categoria> categorias = new ArrayList();
-        CategoriasController CatCtrl = new CategoriasController();
         String sql = "select * from categorias";
         
         if (!filtro.isEmpty())
