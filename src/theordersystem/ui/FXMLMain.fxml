@@ -13,7 +13,7 @@
 <?import javafx.scene.layout.FlowPane?>
 <?import javafx.scene.layout.VBox?>
 
-<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8.0.65" xmlns:fx="http://javafx.com/fxml/1" fx:controller="theordersystem.ui.controlers.FXMLMainController">
+<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8.0.72" xmlns:fx="http://javafx.com/fxml/1" fx:controller="theordersystem.ui.controlers.FXMLMainController">
    <top>
       <VBox prefHeight="9.0" prefWidth="600.0" BorderPane.alignment="CENTER">
          <children>
@@ -39,8 +39,7 @@
                   </Menu>
                   <Menu text="_Pedidos">
                      <items>
-                        <MenuItem fx:id="NewOrder" onAction="#P_nprod" text="Novo Pedido" />
-                        <MenuItem fx:id="SearchOrder" onAction="#P_pprod" text="Procurar Pedido" />
+                        <MenuItem fx:id="miNewOrder" onAction="#miNewOrder_Action" text="Novo Pedido" />
                      </items>
                   </Menu>
                   <Menu text="_Altetar/Excluir">
@@ -80,7 +79,7 @@
    <bottom>
       <FlowPane alignment="CENTER_RIGHT" prefHeight="32.0" prefWidth="600.0" style="-fx-background-color: grey;" BorderPane.alignment="CENTER">
          <children>
-            <Label text="TheOrderSystem v0.01">
+            <Label text="TheOrderSystem v0.87">
                <padding>
                   <Insets right="10.0" />
                </padding>

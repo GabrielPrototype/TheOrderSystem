@@ -77,13 +77,19 @@ public class FXMLOrderManagerController implements Initializable {
     @FXML
     private TextField tfieldQuant;
     @FXML
-    private Button btnAdd;
-    @FXML
     private Button btnDelete;
     @FXML
     private TextField tfieldOrderID;
     @FXML
     private Button btnModify;
+    @FXML
+    private TableView<?> tviewProds;
+    @FXML
+    private Button btnAddProd;
+    @FXML
+    private Button btnDeleteProd;
+    @FXML
+    private Button btnModifyProd;
 
     /**
      * Initializes the controller class.
@@ -132,7 +138,15 @@ public class FXMLOrderManagerController implements Initializable {
     }
 
     @FXML
-    private void btnAddModify_Action(ActionEvent event) {
+    private void btnAddProd_Action(ActionEvent event) {
+    }
+
+    @FXML
+    private void btnDeleteProd_Action(ActionEvent event) {
+    }
+
+    @FXML
+    private void btnModifyProd_Action(ActionEvent event) {
     }
     
 }

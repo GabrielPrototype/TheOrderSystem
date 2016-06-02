@@ -18,7 +18,7 @@
 <?import javafx.scene.layout.FlowPane?>
 <?import javafx.scene.layout.HBox?>
 
-<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="461.0" prefWidth="695.0" xmlns="http://javafx.com/javafx/8.0.65" xmlns:fx="http://javafx.com/fxml/1" fx:controller="theordersystem.ui.controlers.FXMLOrderManagerController">
+<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="461.0" prefWidth="695.0" xmlns="http://javafx.com/javafx/8.0.72" xmlns:fx="http://javafx.com/fxml/1" fx:controller="theordersystem.ui.controlers.FXMLOrderManagerController">
    <center>
       <SplitPane dividerPositions="0.3665223665223665" prefHeight="200.0" prefWidth="200.0" BorderPane.alignment="CENTER">
          <items>
@@ -103,7 +103,7 @@
                      <content>
                         <AnchorPane fx:id="pnData1" prefHeight="354.0" prefWidth="325.0">
                            <children>
-                              <TableView fx:id="tviewProducts" layoutX="14.0" layoutY="229.0" onMouseClicked="#tviewProducts_MouseClicked" prefHeight="139.0" prefWidth="407.0" stylesheets="@stylesheets/tableview.css" AnchorPane.bottomAnchor="14.0" AnchorPane.leftAnchor="14.0" AnchorPane.rightAnchor="14.0" AnchorPane.topAnchor="229.0">
+                              <TableView fx:id="tviewProds" layoutX="14.0" layoutY="229.0" onMouseClicked="#tviewProducts_MouseClicked" prefHeight="139.0" prefWidth="407.0" stylesheets="@stylesheets/tableview.css" AnchorPane.bottomAnchor="14.0" AnchorPane.leftAnchor="14.0" AnchorPane.rightAnchor="14.0" AnchorPane.topAnchor="229.0">
                                 <columns>
                                   <TableColumn prefWidth="99.0" text="ID:" />
                                   <TableColumn prefWidth="102.0" text="Nome:" />
@@ -119,15 +119,15 @@
                               <Label layoutX="14.0" layoutY="130.0" text="Preço" />
                               <TextField fx:id="tfieldQuant" layoutX="14.0" layoutY="195.0" />
                               <Label layoutX="14.0" layoutY="179.0" text="Quantidade" />
-                              <Button fx:id="btnAdd" layoutX="250.0" layoutY="119.0" mnemonicParsing="false" onAction="#btnAddModify_Action" prefWidth="152.0" text="Adicionar" AnchorPane.rightAnchor="33.0" />
-                              <Button fx:id="btnDelete" layoutX="250.0" layoutY="156.0" mnemonicParsing="false" onAction="#btnDelete_Action" prefHeight="26.0" prefWidth="152.0" text="Deletar" AnchorPane.rightAnchor="33.0" />
+                              <Button fx:id="btnAddProd" layoutX="250.0" layoutY="119.0" mnemonicParsing="false" onAction="#btnAddProd_Action" prefWidth="152.0" text="Adicionar" AnchorPane.rightAnchor="33.0" />
+                              <Button fx:id="btnDeleteProd" layoutX="250.0" layoutY="156.0" mnemonicParsing="false" onAction="#btnDeleteProd_Action" prefHeight="26.0" prefWidth="152.0" text="Deletar" AnchorPane.rightAnchor="33.0" />
                               <Label accessibleRoleDescription="ID: numero interno do cliente" layoutX="14.0" layoutY="78.0" text="ID no Pedido">
                                  <tooltip>
                                     <Tooltip text="Identidade interna do Cliente" />
                                  </tooltip>
                               </Label>
                               <TextField fx:id="tfieldOrderID" editable="false" layoutX="14.0" layoutY="94.0" prefHeight="26.0" prefWidth="94.0" />
-                              <Button fx:id="btnModify" layoutX="263.0" layoutY="193.0" mnemonicParsing="false" onAction="#btnDelete_Action" prefHeight="26.0" prefWidth="152.0" text="Modifcar" AnchorPane.rightAnchor="33.0" />
+                              <Button fx:id="btnModifyProd" layoutX="263.0" layoutY="193.0" mnemonicParsing="false" onAction="#btnModifyProd_Action" prefHeight="26.0" prefWidth="152.0" text="Modifcar" AnchorPane.rightAnchor="33.0" />
                            </children>
                         </AnchorPane>
                      </content>

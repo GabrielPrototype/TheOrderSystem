@@ -35,10 +35,6 @@ public class FXMLMainController implements Initializable {
     @FXML
     private MenuItem miProd;
     @FXML
-    private MenuItem NewOrder;
-    @FXML
-    private MenuItem SearchOrder;
-    @FXML
     private MenuItem SearchCat;
     @FXML
     private MenuItem SearchCli;
@@ -50,6 +46,8 @@ public class FXMLMainController implements Initializable {
     private MenuItem RelatCliente;
     @FXML
     private MenuItem miConfigs;
+    @FXML
+    private MenuItem miNewOrder;
 
     /**
      * Initializes the controller class.
@@ -142,13 +140,6 @@ public class FXMLMainController implements Initializable {
         }catch(Exception e){System.out.println(e);}
     }
     
-    @FXML
-    private void P_nprod(ActionEvent event) {
-    }
-
-    @FXML
-    private void P_pprod(ActionEvent event) {
-    }
 
     @FXML
     private void alt_cat(ActionEvent event) {
@@ -168,6 +159,19 @@ public class FXMLMainController implements Initializable {
 
     @FXML
     private void relat_cli(ActionEvent event) {
+    }
+
+    @FXML
+    private void miNewOrder_Action(ActionEvent event) {
+        try
+        {
+           Stage stage = new Stage();
+           Parent root = FXMLLoader.load(getClass().getResource("/theordersystem/ui/FXMLOrderManager.fxml"));
+        
+           Scene scene = new Scene(root);
+           stage.setScene(scene);
+           stage.show();
+        }catch(Exception e){System.out.println(e);}
     }
 
     
