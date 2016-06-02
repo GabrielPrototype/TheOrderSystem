@@ -98,8 +98,17 @@ public class FXMLMainController implements Initializable {
     }
 
     @FXML
-    private void miCustomers_Action(ActionEvent event) {
+    private void miCustomers_Action(ActionEvent event) 
+    {
+        try
+        {
+           Stage stage = new Stage();
+           Parent root = FXMLLoader.load(getClass().getResource("/theordersystem/ui/FXMLCustomerManager.fxml"));
         
+           Scene scene = new Scene(root);
+           stage.setScene(scene);
+           stage.show();
+        }catch(Exception e){System.out.println(e);}
     }
 
     @FXML
