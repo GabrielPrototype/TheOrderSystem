@@ -20,7 +20,6 @@ public class ProdutosController {
     {   String sql = "insert into produtos (nome,categoriaid,preco,estoque) "
                      +"values ('$1',$2,$3, $4)";
     
-        //sql = sql.replace("$1", ""+prod.getProdutoID());
         sql = sql.replace("$1", prod.getNome());
         sql = sql.replace("$2", "" + prod.getCategoria().getCategoriaID());
         sql = sql.replace("$3", "" + prod.getPreco());
