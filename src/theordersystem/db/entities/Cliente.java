@@ -22,6 +22,13 @@ public class Cliente
     }
 
     public Cliente() {
+        this.clienteID = 0;
+        this.nome = "";
+        this.endereco = "";
+        this.cidade = "";
+        this.cep = "";
+        this.pais = "";
+        this.email = "";
     }
 
     public Cliente(String nome, String endereco, String cidade, String cep, String pais, String email) 

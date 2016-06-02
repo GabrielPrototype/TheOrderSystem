@@ -8,22 +8,24 @@ package theordersystem.ui.controlers;
 import java.net.URL;
 import java.util.ArrayList;
 import java.util.ResourceBundle;
+import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.Node;
+import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
+import javafx.scene.control.ButtonType;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
 import javafx.scene.control.TextInputControl;
+import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.BorderPane;
-import theordersystem.db.controlers.CategoriasController;
 import theordersystem.db.controlers.ClienteController;
-import theordersystem.db.entities.Categoria;
 import theordersystem.db.entities.Cliente;
 
 /**
@@ -60,7 +62,7 @@ public class FXMLCustomerManagerController implements Initializable {
     @FXML
     private TextField tfieldName;
     @FXML
-    private TableColumn<?, ?> colName;
+    private TableColumn colName;
     @FXML
     private TextField tfieldAdress;
     @FXML
@@ -77,6 +79,8 @@ public class FXMLCustomerManagerController implements Initializable {
      */
     @Override
     public void initialize(URL url, ResourceBundle rb) {
+        colCod.setCellValueFactory(new PropertyValueFactory("clienteID"));
+        colName.setCellValueFactory(new PropertyValueFactory("nome"));
         LayoutOriginal();
         // TODO
     }    
@@ -100,18 +104,15 @@ public class FXMLCustomerManagerController implements Initializable {
             }
         }
 
-        //carregaTabela("");
+        LoadTableView("");
     }
     private void LoadTableView(String filtro)
     {  ClienteController ctr = new ClienteController();
-       //classe ClienteController está vazia!
-       //ArrayList <Cliente> res = ctr.getClientes(filtro);  
+       ArrayList <Cliente> res = ctr.getClientes(filtro);  
        ObservableList<Cliente> modelo;
-       //modelo = FXCollections.observableArrayList(res);
-       //tviewResult.setItems(modelo);
+       modelo = FXCollections.observableArrayList(res);
+       tviewResult.setItems(modelo);
        
-       CategoriasController catCtrl = new CategoriasController();
-       ArrayList <Categoria> cats = catCtrl.getCategorias("");
     }
     private void LayoutEditing()
     {     // carregar os componentes da tela (listbox, combobox, ...)
@@ -134,7 +135,11 @@ public class FXMLCustomerManagerController implements Initializable {
     @FXML
     private void tviewResult_MouseClicked(MouseEvent event)
     {
-        
+        if (tviewResult.getSelectionModel().getSelectedIndex() >= 0)
+        {
+            btnDelete.setDisable(false);
+            btnModify.setDisable(false);
+        }
     }
 
     @FXML
@@ -146,19 +151,68 @@ public class FXMLCustomerManagerController implements Initializable {
     @FXML
     private void btnModify_Action(ActionEvent event) 
     {
-        LayoutEditing();
+        Cliente cli = (Cliente) tviewResult.getSelectionModel().getSelectedItem();
+        tfieldID.setText("" + cli.getClienteID());
+        tfieldName.setText(cli.getNome()); 
+        tfieldAdress.setText(cli.getEndereco()); 
+        tfieldCity.setText(cli.getCidade());
+        tfieldCEP.setText(cli.getCep()); 
+        tfieldCountry.setText(cli.getCidade()); 
+        tfieldEmail.setText(cli.getEmail());
+        LayoutEditing();  
     }
 
     @FXML
     private void btnDelete_Action(ActionEvent event) 
     {
-        
+        Alert a = new Alert(Alert.AlertType.CONFIRMATION);
+        a.setContentText("Confirma a exclusão?");
+        if (a.showAndWait().get() == ButtonType.OK) 
+        {
+            ClienteController ctr = new ClienteController();
+            Cliente cliente;
+            cliente = tviewResult.getSelectionModel().getSelectedItem();
+            ctr.delete(cliente);
+            LoadTableView("");
+        }
     }
 
     @FXML
-    private void btnConfirm_Action(ActionEvent event) 
-    {
+    private void btnConfirm_Action(ActionEvent event) {
         
+        int cod;
+        try {
+            cod = Integer.parseInt(tfieldID.getText());
+        } catch (Exception e) {
+            cod = 0;
+        }
+        Cliente cli = new Cliente(  cod, 
+                                    tfieldName.getText(), 
+                                    tfieldAdress.getText(), 
+                                    tfieldCity.getText(), 
+                                    tfieldCEP.getText(), 
+                                    tfieldCountry.getText(), 
+                                    tfieldEmail.getText());
+        
+        ClienteController ctr = new ClienteController();
+        Alert a = new Alert(Alert.AlertType.INFORMATION);
+        if (cli.getClienteID()== 0) // novo cadastro
+        {
+            if (ctr.save(cli)) {
+                a.setContentText("Gravado com Sucesso");
+            } else {
+                a.setContentText("Problemas ao Gravar");
+            }
+        } else //alteração de cadastro
+        {
+            if (ctr.modify(cli)) {
+                a.setContentText("Alterado com Sucesso");
+            } else {
+                a.setContentText("Problemas ao Alterar");
+            }
+        }
+        a.showAndWait();
+        LayoutOriginal();
     }
 
     @FXML
