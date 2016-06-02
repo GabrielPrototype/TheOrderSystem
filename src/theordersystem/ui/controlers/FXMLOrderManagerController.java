@@ -7,14 +7,21 @@ package theordersystem.ui.controlers;
 
 import java.net.URL;
 import java.util.ArrayList;
+import java.util.Collection;
+import java.util.Iterator;
+import java.util.List;
+import java.util.ListIterator;
 import java.util.ResourceBundle;
+import javafx.beans.InvalidationListener;
 import javafx.collections.FXCollections;
+import javafx.collections.ListChangeListener;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.event.Event;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.Node;
+import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.DatePicker;
@@ -31,11 +38,13 @@ import javafx.scene.layout.BorderPane;
 import theordersystem.db.controlers.ClienteController;
 import theordersystem.db.controlers.ItemPedidoController;
 import theordersystem.db.controlers.PedidoController;
+import theordersystem.db.controlers.ProdutosController;
 import theordersystem.db.entities.Categoria;
 import theordersystem.db.entities.Cliente;
 import theordersystem.db.entities.ItemPedido;
 import theordersystem.db.entities.Pedido;
 import theordersystem.db.entities.Produto;
+import theordersystem.util.ItensObservableList;
 
 /**
  * FXML Controller class
@@ -122,13 +131,14 @@ public class FXMLOrderManagerController implements Initializable {
     /*
         not FX atributes
     */
-    private ArrayList<ItemPedido> ItensPedidos;
+    private ItensObservableList<ItemPedido> ItensPedido = new ItensObservableList<>();
     
     /**
      * Initializes the controller class.
      */
     @Override
     public void initialize(URL url, ResourceBundle rb) {
+        
         
         LayoutOriginal();
     }    
@@ -167,7 +177,7 @@ public class FXMLOrderManagerController implements Initializable {
                 ((TextInputControl) n).setText("");
             }
         }
-        ItensPedidos = new ArrayList();
+        ItensPedido = new ItensObservableList<>();
         LoadTableView("");
     }
     
@@ -180,12 +190,11 @@ public class FXMLOrderManagerController implements Initializable {
        
     }
     
-    private void LoadTableViewProducts(ObservableList<ItemPedido> modelo)
+    private void LoadTableViewProducts()
     {  
         // use this http://stackoverflow.com/questions/35436199/casting-arraylist-to-observablelist-for-tableview
-        tviewProds.setItems(modelo);
-        
-      
+        tviewProds.setItems(ItensPedido);
+
     }
     
     private void LayoutEditing()
@@ -199,6 +208,12 @@ public class FXMLOrderManagerController implements Initializable {
           btnModify.setDisable(true);
           tfieldID.requestFocus();  
      }
+    
+    private ObservableList <ItemPedido> getProducts(){
+        ObservableList <ItemPedido> itens;
+        itens = tviewProds.getItems();
+        return itens;
+    }
     
     @FXML
     private void btnNew_Action(ActionEvent event) {
@@ -217,6 +232,39 @@ public class FXMLOrderManagerController implements Initializable {
     @FXML
     private void btnConfirm_Action(ActionEvent event) {
         
+        
+        int cod;
+        try {
+            cod = Integer.parseInt(tfieldID.getText());
+        } catch (Exception e) {
+            cod = 0;
+        }
+        Pedido ped = new Pedido();
+        
+        PedidoController ctr = new PedidoController();
+        
+        
+        
+        
+        
+        Alert a = new Alert(Alert.AlertType.INFORMATION);
+        if (ped.getClienteID()== 0) // novo cadastro
+        {
+            if (ctr.save(ped)) {
+                a.setContentText("Gravado com Sucesso");
+            } else {
+                a.setContentText("Problemas ao Gravar");
+            }
+        } else //alteração de cadastro
+        {
+            if (ctr.modify(ped)) {
+                a.setContentText("Alterado com Sucesso");
+            } else {
+                a.setContentText("Problemas ao Alterar");
+            }
+        }
+        a.showAndWait();
+        LayoutOriginal();
         // o confirmar tem fazer loop para adicionar todos os itens da table view de produtos também
     }
 
@@ -243,6 +291,10 @@ public class FXMLOrderManagerController implements Initializable {
 
     @FXML
     private void btnAddProd_Action(ActionEvent event) {
+        ProdutosController prodCtrl = new ProdutosController();
+        ItemPedido iPedido = null;
+        
+        ItensPedido.add(iPedido);
     }
 
     @FXML
@@ -260,5 +312,6 @@ public class FXMLOrderManagerController implements Initializable {
     @FXML
     private void tabProd_Changed(Event event) {
     }
-    
 }
+
+
