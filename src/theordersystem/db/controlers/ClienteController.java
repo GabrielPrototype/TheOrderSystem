@@ -31,7 +31,7 @@ public class ClienteController {
     }
     
     public boolean modify(Cliente cli)
-    {   String sql="update categorias set nome='$1', endereco='$2, cidade='$3', cep='$4',"
+    {   String sql="update clientes set nome='$1', endereco='$2', cidade='$3', cep='$4',"
                     + "pais='$5',email='$6' where clienteid = $7";
         sql=sql.replace("$1", cli.getNome());
         sql=sql.replace("$2", cli.getEndereco());
@@ -81,7 +81,7 @@ public class ClienteController {
         
         try {
             while(rs.next()){
-               clientes.add(new Cliente(    rs.getInt("clientedid"), 
+               clientes.add(new Cliente(    rs.getInt("clienteid"), 
                                             rs.getString("nome"), 
                                             rs.getString("endereco"), 
                                             rs.getString("cidade"),
