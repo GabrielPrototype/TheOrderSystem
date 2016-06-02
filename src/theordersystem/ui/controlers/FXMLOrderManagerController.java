@@ -96,8 +96,6 @@ public class FXMLOrderManagerController implements Initializable {
     @FXML
     private Button btnDelete;
     @FXML
-    private TextField tfieldOrderID;
-    @FXML
     private Button btnModify;
     @FXML
     private TableView<ItemPedido> tviewProds;
@@ -132,6 +130,8 @@ public class FXMLOrderManagerController implements Initializable {
         not FX atributes
     */
     private ItensObservableList<ItemPedido> ItensPedido = new ItensObservableList<>();
+    @FXML
+    private TextField tfieldProdID;
     
     /**
      * Initializes the controller class.
@@ -292,8 +292,18 @@ public class FXMLOrderManagerController implements Initializable {
     @FXML
     private void btnAddProd_Action(ActionEvent event) {
         ProdutosController prodCtrl = new ProdutosController();
-        ItemPedido iPedido = null;
+        float price;
+        int iPedID, pedidoID, qty;
         
+        price = Float.parseFloat(tfieldPrice.getText());
+        qty = Integer.parseInt(tfieldQuant.getText());
+        iPedID   = Integer.parseInt(tfieldProdID.getText());
+        pedidoID = Integer.parseInt(tfieldID.getText());
+        
+        ItemPedido iPedido = new ItemPedido(    iPedID,
+                                                pedidoID, 
+                                                cbProduct.getValue(),
+                                                price, qty);
         ItensPedido.add(iPedido);
     }
 
