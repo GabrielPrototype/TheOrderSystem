@@ -32,6 +32,7 @@ import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
 import javafx.scene.control.TextInputControl;
 import javafx.scene.control.TitledPane;
+import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.BorderPane;
@@ -67,6 +68,10 @@ public class FXMLOrderManagerController implements Initializable {
     private Button btnSearch;
     @FXML
     private TableView<Pedido> tviewResult;
+    @FXML
+    private TableColumn<?, ?> colDate;
+    @FXML
+    private TableColumn<?, ?> colPrice;
     @FXML
     private TableColumn colCod;
     @FXML
@@ -114,10 +119,6 @@ public class FXMLOrderManagerController implements Initializable {
     @FXML
     private Button btnLoadCustomer;
     @FXML
-    private TableColumn<?, ?> colDate;
-    @FXML
-    private TableColumn<?, ?> colPrice;
-    @FXML
     private TitledPane tpaneClient;
     @FXML
     private AnchorPane apaneInfoClient;
@@ -125,13 +126,21 @@ public class FXMLOrderManagerController implements Initializable {
     private TitledPane tpanaInfo;
     @FXML
     private AnchorPane apaneInfo;
+    @FXML
+    private TextField tfieldProdID;
+    @FXML
+    private TableColumn tcolumnProdID;
+    @FXML
+    private TableColumn tcolumnProdName;
+    @FXML
+    private TableColumn tcolumnQty;
+    @FXML
+    private TableColumn tcolumnPrice;
     
     /*
         not FX atributes
     */
-    private ItensObservableList<ItemPedido> ItensPedido = new ItensObservableList<>();
-    @FXML
-    private TextField tfieldProdID;
+    private ArrayList<ItemPedido> ItensPedido = new ArrayList<>();
     
     /**
      * Initializes the controller class.
@@ -139,7 +148,10 @@ public class FXMLOrderManagerController implements Initializable {
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         
+        tcolumnPrice.setCellValueFactory(new PropertyValueFactory("preco"));
+        tcolumnQty.setCellValueFactory(new PropertyValueFactory("quantidade"));
         
+        LoadTableViewProducts();
         LayoutOriginal();
     }    
     
@@ -177,7 +189,7 @@ public class FXMLOrderManagerController implements Initializable {
                 ((TextInputControl) n).setText("");
             }
         }
-        ItensPedido = new ItensObservableList<>();
+        //ItensPedido = new ItensObservableList<>();
         LoadTableView("");
     }
     
@@ -193,7 +205,7 @@ public class FXMLOrderManagerController implements Initializable {
     private void LoadTableViewProducts()
     {  
         // use this http://stackoverflow.com/questions/35436199/casting-arraylist-to-observablelist-for-tableview
-        tviewProds.setItems(ItensPedido);
+        tviewProds.setItems(FXCollections.observableList(ItensPedido));
 
     }
     
@@ -287,24 +299,41 @@ public class FXMLOrderManagerController implements Initializable {
 
     @FXML
     private void cbCategory_Action(ActionEvent event) {
+        
     }
 
     @FXML
     private void btnAddProd_Action(ActionEvent event) {
+        
+        Alert a = new Alert(Alert.AlertType.INFORMATION);
+        
         ProdutosController prodCtrl = new ProdutosController();
         float price;
         int iPedID, pedidoID, qty;
         
-        price = Float.parseFloat(tfieldPrice.getText());
-        qty = Integer.parseInt(tfieldQuant.getText());
-        iPedID   = Integer.parseInt(tfieldProdID.getText());
-        pedidoID = Integer.parseInt(tfieldID.getText());
+        try{    iPedID = Integer.parseInt(tfieldProdID.getText());}
+        catch(NumberFormatException e){     iPedID = 0;}
         
-        ItemPedido iPedido = new ItemPedido(    iPedID,
+        try{    pedidoID = Integer.parseInt(tfieldID.getText());}
+        catch(NumberFormatException e){ pedidoID = 0;}
+        
+        try {
+            
+            price = Float.parseFloat(tfieldPrice.getText());
+            qty = Integer.parseInt(tfieldQuant.getText());
+            ItemPedido iPedido = new ItemPedido(    iPedID,
                                                 pedidoID, 
                                                 cbProduct.getValue(),
                                                 price, qty);
-        ItensPedido.add(iPedido);
+            ItensPedido.add(iPedido);
+            LoadTableViewProducts();
+            
+        } catch (NumberFormatException numberFormatException) {
+            a.setContentText("Valores incorretos!");
+            a.showAndWait();
+        } catch (Exception e ) { }
+        
+        
     }
 
     @FXML
