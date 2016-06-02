@@ -34,21 +34,22 @@
                <center>
                   <TableView fx:id="tviewResult" onMouseClicked="#tviewResult_MouseClicked" prefHeight="377.0" prefWidth="243.0" stylesheets="@stylesheets/tableview.css" BorderPane.alignment="CENTER">
                      <columns>
-                        <TableColumn fx:id="colCod" prefWidth="53.0" text="ID" />
-                        <TableColumn fx:id="colCustomerName" prefWidth="181.0" text="Nome do Cliente" />
+                        <TableColumn fx:id="colCod" editable="false" prefWidth="53.0" text="ID" />
+                        <TableColumn fx:id="colDate" editable="false" prefWidth="64.0" text="Data" />
+                        <TableColumn fx:id="colPrice" editable="false" prefWidth="64.0" text="Preço" />
                      </columns>
                   </TableView>
                </center>
             </BorderPane>
-            <TabPane prefHeight="354.0" prefWidth="358.0" tabClosingPolicy="UNAVAILABLE">
+            <TabPane fx:id="tabpaneOrder" prefHeight="354.0" prefWidth="358.0" tabClosingPolicy="UNAVAILABLE">
               <tabs>
-                <Tab text="Informações">
+                <Tab fx:id="tabInfo" onSelectionChanged="#tabInfo_Changed" text="Informações">
                      <content>
                         <AnchorPane fx:id="pnData" prefHeight="354.0" prefWidth="325.0">
                            <children>
-                              <TitledPane animated="false" layoutX="14.0" layoutY="14.0" minHeight="147.0" prefHeight="207.0" prefWidth="419.0" text="Informações do Cliente" AnchorPane.bottomAnchor="8.0" AnchorPane.leftAnchor="8.0" AnchorPane.rightAnchor="8.0" AnchorPane.topAnchor="170.0">
+                              <TitledPane fx:id="tpaneClient" animated="false" collapsible="false" layoutX="14.0" layoutY="14.0" minHeight="147.0" prefHeight="207.0" prefWidth="419.0" text="Informações do Cliente" AnchorPane.bottomAnchor="8.0" AnchorPane.leftAnchor="8.0" AnchorPane.rightAnchor="8.0" AnchorPane.topAnchor="170.0">
                                  <content>
-                                    <AnchorPane fx:id="pnData2" prefHeight="172.0" prefWidth="417.0">
+                                    <AnchorPane fx:id="apaneInfoClient" prefHeight="172.0" prefWidth="417.0">
                                        <children>
                                           <Label accessibleRoleDescription="ID: numero interno do cliente" layoutX="15.0" layoutY="14.0" text="ID:" AnchorPane.leftAnchor="3.0">
                                              <tooltip>
@@ -61,17 +62,17 @@
                                                 <Insets />
                                              </opaqueInsets>
                                           </Label>
-                                          <TextField fx:id="tfieldCustomerName" layoutX="23.4" layoutY="81.0" minWidth="247.0" prefHeight="26.0" prefWidth="399.0" AnchorPane.leftAnchor="3.0" AnchorPane.rightAnchor="-1.0" />
+                                          <TextField fx:id="tfieldCustomerName" editable="false" layoutX="23.4" layoutY="81.0" minWidth="247.0" prefHeight="26.0" prefWidth="399.0" AnchorPane.leftAnchor="3.0" AnchorPane.rightAnchor="-1.0" />
                                           <Label layoutX="14.0" layoutY="124.0" text="Cidade:" AnchorPane.leftAnchor="3.0" />
-                                          <TextField fx:id="tfieldCustomerCity" layoutX="23.4" layoutY="140.0" minWidth="300.0" prefHeight="26.0" prefWidth="398.0" AnchorPane.leftAnchor="3.0" AnchorPane.rightAnchor="0.0" />
-                                          <Button fx:id="btnSearchCustomer" layoutX="85.0" layoutY="30.0" mnemonicParsing="false" text="Pesquisar Cliente" />
+                                          <TextField fx:id="tfieldCustomerCity" editable="false" layoutX="23.4" layoutY="140.0" minWidth="300.0" prefHeight="26.0" prefWidth="398.0" AnchorPane.leftAnchor="3.0" AnchorPane.rightAnchor="0.0" />
+                                          <Button fx:id="btnLoadCustomer" layoutX="85.0" layoutY="30.0" mnemonicParsing="false" text="Carregar Informações" />
                                        </children>
                                     </AnchorPane>
                                  </content>
                               </TitledPane>
-                              <TitledPane fx:id="tviewProducts" animated="false" layoutX="8.0" layoutY="224.0" prefHeight="151.0" prefWidth="419.0" text="Informaçoes do Pedido" AnchorPane.leftAnchor="8.0" AnchorPane.rightAnchor="8.0" AnchorPane.topAnchor="8.0">
+                              <TitledPane fx:id="tpanaInfo" animated="false" collapsible="false" layoutX="8.0" layoutY="224.0" prefHeight="151.0" prefWidth="419.0" text="Informaçoes do Pedido" AnchorPane.leftAnchor="8.0" AnchorPane.rightAnchor="8.0" AnchorPane.topAnchor="8.0">
                                 <content>
-                                  <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
+                                  <AnchorPane fx:id="apaneInfo" minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
                                        <children>
                                           <Label accessibleRoleDescription="ID: numero interno do cliente" layoutX="4.0" layoutY="14.0" text="ID:" AnchorPane.leftAnchor="3.0">
                                              <tooltip>
@@ -99,16 +100,16 @@
                         </AnchorPane>
                      </content>
                 </Tab>
-                <Tab text="Produtos">
+                <Tab fx:id="tabProd" onSelectionChanged="#tabProd_Changed" text="Produtos">
                      <content>
-                        <AnchorPane fx:id="pnData1" prefHeight="354.0" prefWidth="325.0">
+                        <AnchorPane fx:id="pnData2" prefHeight="354.0" prefWidth="325.0">
                            <children>
                               <TableView fx:id="tviewProds" layoutX="14.0" layoutY="229.0" onMouseClicked="#tviewProducts_MouseClicked" prefHeight="139.0" prefWidth="407.0" stylesheets="@stylesheets/tableview.css" AnchorPane.bottomAnchor="14.0" AnchorPane.leftAnchor="14.0" AnchorPane.rightAnchor="14.0" AnchorPane.topAnchor="229.0">
                                 <columns>
-                                  <TableColumn prefWidth="99.0" text="ID:" />
-                                  <TableColumn prefWidth="102.0" text="Nome:" />
-                                    <TableColumn prefWidth="102.0" text="Quantidade:" />
-                                    <TableColumn prefWidth="102.0" text="Preço:" />
+                                  <TableColumn editable="false" prefWidth="99.0" text="ID:" />
+                                  <TableColumn editable="false" prefWidth="102.0" text="Nome:" />
+                                    <TableColumn editable="false" prefWidth="102.0" text="Quantidade:" />
+                                    <TableColumn editable="false" prefWidth="102.0" text="Preço:" />
                                 </columns>
                               </TableView>
                               <ComboBox fx:id="cbCategory" layoutX="14.0" layoutY="43.0" onAction="#cbCategory_Action" prefWidth="150.0" promptText="selecione" />

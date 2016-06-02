@@ -6,20 +6,36 @@
 package theordersystem.ui.controlers;
 
 import java.net.URL;
+import java.util.ArrayList;
 import java.util.ResourceBundle;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
+import javafx.event.Event;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
+import javafx.scene.Node;
 import javafx.scene.control.Button;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.DatePicker;
+import javafx.scene.control.Tab;
+import javafx.scene.control.TabPane;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
+import javafx.scene.control.TextInputControl;
 import javafx.scene.control.TitledPane;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.BorderPane;
+import theordersystem.db.controlers.ClienteController;
+import theordersystem.db.controlers.ItemPedidoController;
+import theordersystem.db.controlers.PedidoController;
+import theordersystem.db.entities.Categoria;
+import theordersystem.db.entities.Cliente;
+import theordersystem.db.entities.ItemPedido;
+import theordersystem.db.entities.Pedido;
+import theordersystem.db.entities.Produto;
 
 /**
  * FXML Controller class
@@ -41,11 +57,9 @@ public class FXMLOrderManagerController implements Initializable {
     @FXML
     private Button btnSearch;
     @FXML
-    private TableView<?> tviewResult;
+    private TableView<Pedido> tviewResult;
     @FXML
-    private TableColumn<?, ?> colCod;
-    @FXML
-    private TableColumn<?, ?> colCustomerName;
+    private TableColumn colCod;
     @FXML
     private AnchorPane pnData;
     @FXML
@@ -57,21 +71,15 @@ public class FXMLOrderManagerController implements Initializable {
     @FXML
     private TextField tfieldCustomerCity;
     @FXML
-    private Button btnSearchCustomer;
-    @FXML
-    private TitledPane tviewProducts;
-    @FXML
     private TextField tfieldID;
     @FXML
     private DatePicker dtpData;
     @FXML
     private TextField tfieldFCost;
     @FXML
-    private AnchorPane pnData1;
+    private ComboBox<Categoria> cbCategory;
     @FXML
-    private ComboBox<?> cbCategory;
-    @FXML
-    private ComboBox<?> cbProduct;
+    private ComboBox<Produto> cbProduct;
     @FXML
     private TextField tfieldPrice;
     @FXML
@@ -83,28 +91,119 @@ public class FXMLOrderManagerController implements Initializable {
     @FXML
     private Button btnModify;
     @FXML
-    private TableView<?> tviewProds;
+    private TableView<ItemPedido> tviewProds;
     @FXML
     private Button btnAddProd;
     @FXML
     private Button btnDeleteProd;
     @FXML
     private Button btnModifyProd;
+    @FXML
+    private TabPane tabpaneOrder;
+    @FXML
+    private Tab tabInfo;
+    @FXML
+    private Tab tabProd;
+    @FXML
+    private Button btnLoadCustomer;
+    @FXML
+    private TableColumn<?, ?> colDate;
+    @FXML
+    private TableColumn<?, ?> colPrice;
+    @FXML
+    private TitledPane tpaneClient;
+    @FXML
+    private AnchorPane apaneInfoClient;
+    @FXML
+    private TitledPane tpanaInfo;
+    @FXML
+    private AnchorPane apaneInfo;
 
     /**
      * Initializes the controller class.
      */
     @Override
     public void initialize(URL url, ResourceBundle rb) {
-        // TODO
+        LayoutOriginal();
     }    
+    
+    private void LayoutOriginal() 
+    {
+        pnSearch.setDisable(false);
+        pnData.setDisable(true);
+        pnData2.setDisable(true);
+        btnConfirm.setDisable(true);
+        btnCancel.setDisable(false);
+        btnDelete.setDisable(true);
+        btnModify.setDisable(true);
+        btnNew.setDisable(false);
 
+        ObservableList<Node> componentes = apaneInfo.getChildren(); //”limpa” os componentes
+        for (Node n : componentes) {
+            if (n instanceof TextInputControl) // textfield, textarea e htmleditor
+            {
+                ((TextInputControl) n).setText("");
+            }
+        }
+        
+        componentes = apaneInfoClient.getChildren(); //”limpa” os componentes
+        for (Node n : componentes) {
+            if (n instanceof TextInputControl) // textfield, textarea e htmleditor
+            {
+                ((TextInputControl) n).setText("");
+            }
+        }
+        
+        componentes = pnData2.getChildren(); //”limpa” os componentes
+        for (Node n : componentes) {
+            if (n instanceof TextInputControl) // textfield, textarea e htmleditor
+            {
+                ((TextInputControl) n).setText("");
+            }
+        }
+
+        LoadTableView("");
+    }
+    
+    private void LoadTableView(String filtro)
+    {  PedidoController ctr = new PedidoController();
+       ArrayList <Pedido> res = ctr.getPedidos(filtro);  
+       ObservableList<Pedido> modelo;
+       modelo = FXCollections.observableArrayList(res);
+       tviewResult.setItems(modelo);
+       
+    }
+    
+    private void LoadTableViewProducts(String filtro)
+    {  /*
+        ItemPedidoController ctr = new ItemPedidoController();
+        ArrayList <ItemPedido> res = ctr.getItemPedidos(filtro);
+        ObservableList<ItemPedido> modelo;
+        modelo = FXCollections.observableArrayList(res);
+        tviewProds.setItems(modelo);
+        */
+    }
+    
+    private void LayoutEditing()
+    {    
+          tfieldID.setEditable(false);
+          pnSearch.setDisable(true);
+          pnData.setDisable(false);
+          pnData2.setDisable(false);
+          btnConfirm.setDisable(false);
+          btnDelete.setDisable(true);
+          btnModify.setDisable(true);
+          tfieldID.requestFocus();  
+     }
+    
     @FXML
     private void btnNew_Action(ActionEvent event) {
+        LayoutEditing();
     }
 
     @FXML
     private void btnModify_Action(ActionEvent event) {
+        LayoutEditing();
     }
 
     @FXML
@@ -119,6 +218,7 @@ public class FXMLOrderManagerController implements Initializable {
 
     @FXML
     private void btnCancel_Action(ActionEvent event) {
+        LayoutOriginal();
     }
 
     @FXML
@@ -147,6 +247,14 @@ public class FXMLOrderManagerController implements Initializable {
 
     @FXML
     private void btnModifyProd_Action(ActionEvent event) {
+    }
+
+    @FXML
+    private void tabInfo_Changed(Event event) {
+    }
+
+    @FXML
+    private void tabProd_Changed(Event event) {
     }
     
 }
