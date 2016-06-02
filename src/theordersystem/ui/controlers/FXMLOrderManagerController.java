@@ -118,12 +118,18 @@ public class FXMLOrderManagerController implements Initializable {
     private TitledPane tpanaInfo;
     @FXML
     private AnchorPane apaneInfo;
-
+    
+    /*
+        not FX atributes
+    */
+    private ArrayList<ItemPedido> ItensPedidos;
+    
     /**
      * Initializes the controller class.
      */
     @Override
     public void initialize(URL url, ResourceBundle rb) {
+        
         LayoutOriginal();
     }    
     
@@ -161,7 +167,7 @@ public class FXMLOrderManagerController implements Initializable {
                 ((TextInputControl) n).setText("");
             }
         }
-
+        ItensPedidos = new ArrayList();
         LoadTableView("");
     }
     
@@ -174,14 +180,12 @@ public class FXMLOrderManagerController implements Initializable {
        
     }
     
-    private void LoadTableViewProducts(String filtro)
-    {  /*
-        ItemPedidoController ctr = new ItemPedidoController();
-        ArrayList <ItemPedido> res = ctr.getItemPedidos(filtro);
-        ObservableList<ItemPedido> modelo;
-        modelo = FXCollections.observableArrayList(res);
+    private void LoadTableViewProducts(ObservableList<ItemPedido> modelo)
+    {  
+        // use this http://stackoverflow.com/questions/35436199/casting-arraylist-to-observablelist-for-tableview
         tviewProds.setItems(modelo);
-        */
+        
+      
     }
     
     private void LayoutEditing()
